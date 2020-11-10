@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FACAMP Network</string>
+    <string name="title_market">Mercado</string>
+    <string name="title_rides">Caronas</string>
+    <string name="title_classes">Aulas</string>
+    <string name="title_profile">Perfil</string>
+</resources>
