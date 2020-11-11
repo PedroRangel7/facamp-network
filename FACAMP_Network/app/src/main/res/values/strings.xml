@@ -4,4 +4,8 @@
     <string name="title_rides">Caronas</string>
     <string name="title_classes">Aulas</string>
     <string name="title_profile">Perfil</string>
+    <string name="login_hint">Login</string>
+    <string name="password_hint">Senha</string>
+    <string name="enter">Entrar</string>
+
 </resources>
