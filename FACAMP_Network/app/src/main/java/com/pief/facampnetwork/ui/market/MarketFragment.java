@@ -1,11 +1,12 @@
 package com.pief.facampnetwork.ui.market;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.pief.facampnetwork.AdicionarProdutoActivity;
 import com.pief.facampnetwork.R;
 import com.pief.facampnetwork.MarketRecyclerAdapter;
 
@@ -34,17 +37,15 @@ import java.util.Map;
 
 public class MarketFragment extends Fragment {
 
-    String url = "http://192.168.0.79/scripts/getProdutos.php";
-
     StringRequest stringRequest;
     RequestQueue requestQueue;
 
+    String getProdutosURL = "http://192.168.0.79/scripts/getProdutos.php";
     RecyclerView recyclerView;
     MarketRecyclerAdapter marketRecyclerAdapter;
-
     List<JSONObject> produtos;
 
-    //TextView id, nome, preco, descricao, idUsuario, id2, nome2, preco2, descricao2, idUsuario2;
+    FloatingActionButton buttonAdicionarProduto;
 
     private MarketViewModel marketViewModel;
 
@@ -53,25 +54,33 @@ public class MarketFragment extends Fragment {
         marketViewModel =
                 new ViewModelProvider(this).get(MarketViewModel.class);
         View root = inflater.inflate(R.layout.fragment_market, container, false);
-        final TextView textView = root.findViewById(R.id.text_market);
         marketViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
             }
         });
 
         requestQueue = Volley.newRequestQueue(getActivity());
         preencherProdutos(root);
 
+        buttonAdicionarProduto = root.findViewById(R.id.market_add_button);
+
+        buttonAdicionarProduto.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent telaAdicionarProduto = new Intent(getActivity(), AdicionarProdutoActivity.class);
+                startActivity(telaAdicionarProduto);
+            }
+        });
+
         return root;
     }
 
     private void preencherProdutos(View view){
-        stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
+        stringRequest = new StringRequest(Request.Method.GET, getProdutosURL, new Response.Listener<String>(){
             @Override
             public void onResponse(String response){
-                Log.v("LogLogin", response);
+                Log.i("Market", response);
                 try{
                     JSONObject jsonObject = new JSONObject(response);
                     boolean erro = jsonObject.getBoolean("erro");
@@ -79,19 +88,6 @@ public class MarketFragment extends Fragment {
                         Toast.makeText(getActivity().getApplicationContext(), jsonObject.getString("mensagem"), Toast.LENGTH_LONG).show();
                     }
                     else{
-                        /*id = (TextView)view.findViewById(R.id.idTextView);
-                        nome = (TextView)view.findViewById(R.id.nomeTextView);
-                        preco = (TextView)view.findViewById(R.id.precoTextView);
-                        descricao = (TextView)view.findViewById(R.id.descricaoTextView);
-                        idUsuario = (TextView)view.findViewById(R.id.idUsuarioTextView);
-                        id2 = (TextView)view.findViewById(R.id.idTextView2);
-                        nome2 = (TextView)view.findViewById(R.id.nomeTextView2);
-                        preco2 = (TextView)view.findViewById(R.id.precoTextView2);
-                        descricao2 = (TextView)view.findViewById(R.id.descricaoTextView2);
-                        idUsuario2 = (TextView)view.findViewById(R.id.idUsuarioTextView2);*/
-
-
-
                         Toast.makeText(getActivity().getApplicationContext(), jsonObject.getString("mensagem"), Toast.LENGTH_LONG).show();
 
                         recyclerView = (RecyclerView)view.findViewById(R.id.market_recyclerView);
@@ -106,33 +102,15 @@ public class MarketFragment extends Fragment {
 
                         marketRecyclerAdapter = new MarketRecyclerAdapter(produtos);
                         recyclerView.setAdapter(marketRecyclerAdapter);
-
-
-                        /*JSONObject produto1 = jsonObject.getJSONObject("0");
-
-                        id.setText(produto1.getString("id"));
-                        nome.setText(produto1.getString("nome"));
-                        preco.setText(produto1.getString("preco"));
-                        descricao.setText(produto1.getString("descricao"));
-                        idUsuario.setText(produto1.getString("idUsuario"));
-
-                        JSONObject produto2 = jsonObject.getJSONObject("1");
-
-                        id2.setText(produto2.getString("id"));
-                        nome2.setText(produto2.getString("nome"));
-                        preco2.setText(produto2.getString("preco"));
-                        descricao2.setText(produto2.getString("descricao"));
-                        idUsuario2.setText(produto2.getString("idUsuario"));*/
-
                     }
                 }catch(Exception e){
-                    Log.v("LogLogin", e.getMessage());
+                    Log.e("Market", e.getMessage());
                 }
             }
         }, new Response.ErrorListener(){
             @Override
             public void onErrorResponse(VolleyError error){
-                Log.e("LogLogin", error.getMessage());
+                Log.e("Market", error.getMessage());
             }
         }) {
             @Override

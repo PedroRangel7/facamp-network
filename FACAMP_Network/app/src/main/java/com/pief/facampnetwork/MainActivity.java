@@ -30,6 +30,11 @@ import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static int idSessao;
+    public static int getIDSessao(){
+        return idSessao;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,5 +47,8 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+        idSessao = getIntent().getIntExtra("ID_SESSAO", -1);
+        Log.i("Sessao", String.valueOf(idSessao));
     }
 }

@@ -24,14 +24,13 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
-    String url = "http://192.168.0.79/scripts/checkLogin.php";
+    String loginURL = "http://192.168.0.79/scripts/checkLogin.php";
 
     StringRequest stringRequest;
     RequestQueue requestQueue;
 
     Button buttonEntrar;
-    EditText editLogin;
-    EditText editSenha;
+    EditText editLogin, editSenha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,10 +69,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void validarLogin(){
-        stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>(){
+        stringRequest = new StringRequest(Request.Method.POST, loginURL, new Response.Listener<String>(){
             @Override
             public void onResponse(String response){
-                Log.v("LogLogin", response);
+                Log.i("Login", response);
                 try{
                     JSONObject jsonObject = new JSONObject(response);
                     boolean erro = jsonObject.getBoolean("erro");
@@ -94,17 +93,18 @@ public class LoginActivity extends AppCompatActivity {
                                 break;
                         }
                         Intent telaPrincipal = new Intent(LoginActivity.this, MainActivity.class);
+                        telaPrincipal.putExtra("ID_SESSAO", jsonObject.getInt("id"));
                         startActivity(telaPrincipal);
                         finish();
                     }
                 }catch(Exception e){
-                    Log.v("LogLogin", e.getMessage());
+                    Log.e("Login", e.getMessage());
                 }
             }
         }, new Response.ErrorListener(){
             @Override
             public void onErrorResponse(VolleyError error){
-                Log.e("LogLogin", error.getMessage());
+                Log.e("Login", error.getMessage());
             }
         }) {
             @Override

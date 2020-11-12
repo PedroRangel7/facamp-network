@@ -4,53 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_27"
-    tools:context=".LoginActivity">
+    android:background="@color/grey_38"
+    tools:context=".AdicionarProdutoActivity">
 
     <Button
-        android:id="@+id/buttonEntrar"
+        android:id="@+id/buttonAdicionar"
         android:layout_width="240dp"
         android:layout_height="72dp"
         android:layout_marginTop="80dp"
-        android:text="@string/enter"
+        android:text="@string/add"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editSenha" />
+        app:layout_constraintTop_toBottomOf="@+id/editDescricao" />
 
     <EditText
-        android:id="@+id/editLogin"
+        android:id="@+id/editNome"
         android:layout_width="240dp"
         android:layout_height="40dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="140dp"
         android:background="@color/dark_blue"
         android:ems="10"
-        android:hint="@string/login_hint"
+        android:hint="@string/name_hint"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:maxLength="20"
+        android:maxLength="30"
         android:textColor="@color/white"
         android:textColorHint="@color/light_grey"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editSenha"
+        android:id="@+id/editPreco"
         android:layout_width="240dp"
         android:layout_height="40dp"
         android:layout_marginTop="40dp"
         android:background="@color/dark_blue"
         android:ems="10"
-        android:hint="@string/password_hint"
+        android:hint="@string/price_hint"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:maxLength="32"
         android:textColor="@color/white"
         android:textColorHint="@color/light_grey"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/editNome" />
+
+    <EditText
+        android:id="@+id/editDescricao"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@color/dark_blue"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="@string/description_hint"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"
+        android:maxLength="100"
+        android:maxLines="8"
+        android:textColor="@color/white"
+        android:textColorHint="@color/light_grey"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPreco" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
