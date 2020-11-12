@@ -65,6 +65,7 @@ public class AdicionarProdutoActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), jsonObject.getString("mensagem"), Toast.LENGTH_LONG).show();
                     }
                     else{
+                        Toast.makeText(getApplicationContext(), jsonObject.getString("mensagem"), Toast.LENGTH_LONG).show();
                         Intent telaPrincipal = new Intent(AdicionarProdutoActivity.this, MainActivity.class);
                         startActivity(telaPrincipal);
                         finish();
@@ -90,6 +91,7 @@ public class AdicionarProdutoActivity extends AppCompatActivity {
             }
         };
 
+        requestQueue.getCache().clear();
         requestQueue.add(stringRequest);
     }
 }
