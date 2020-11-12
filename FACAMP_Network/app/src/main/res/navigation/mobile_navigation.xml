@@ -22,4 +22,10 @@
         android:name="com.pief.facampnetwork.ui.classes.ClassesFragment"
         android:label="@string/title_classes"
         tools:layout="@layout/fragment_classes" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.pief.facampnetwork.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

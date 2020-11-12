@@ -14,25 +14,22 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         die("Conexão falhou.");
     }
 
-    $id = "'".$_POST['id']."'";
+    $sql = "SELECT * FROM produto";
 
-    $sql = "SELECT * FROM produto WHERE id = $id";
-    $result = $conn->query($sql);
-
-    if($result->num_rows > 0){
-        $registro = mysqli_fetch_array($result);
-
-        $sql = "SELECT * FROM usuario WHERE id = $registro[idUsuario]";
-        $result = $conn->query($sql);
-        $usuario = mysqli_fetch_array($result);
-        
+    if($result = $conn->query($sql)){
         $response["erro"] = false;
-        $response["mensagem"] = "Produtos encontrados.";
-        $response["nome"] = $registro['nome'];
-        $response["preco"] = $registro['preco'];
-        $response["descricao"] = $registro['descricao'];
-        $response["anunciante"] = $usuario['nome'];
-        //$response["imagem"] = $registro['imagem'];
+        $response["mensagem"] = $result->num_rows." Produtos encontrados.";
+        $response["numeroProdutos"] = $result->num_rows;
+        $i = 0;
+        while ($row = $result->fetch_row()) {
+            $response[$i]["id"] = $row[0];
+            $response[$i]["nome"] = $row[1];
+            $response[$i]["preco"] = $row[2];
+            $response[$i]["descricao"] = $row[3];
+            $response[$i]["idUsuario"] = $row[5];
+            $i++;
+        }
+        $result->close();
     }
     else{
         $response["mensagem"] = "Nenhum produto encontrado.";
@@ -42,5 +39,4 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 
 echo json_encode($response);
-
 ?>

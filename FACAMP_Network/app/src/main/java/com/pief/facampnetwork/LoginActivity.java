@@ -24,7 +24,7 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
-    String url = "http://192.168.0.79/scripts/getUsuarios.php";
+    String url = "http://192.168.0.79/scripts/checkLogin.php";
 
     StringRequest stringRequest;
     RequestQueue requestQueue;
@@ -89,11 +89,8 @@ public class LoginActivity extends AppCompatActivity {
                             case 2:
                                 Toast.makeText(getApplicationContext(), "Logado como moderador.", Toast.LENGTH_LONG).show();
                                 break;
-                            case 3:
-                                Toast.makeText(getApplicationContext(), "Logado como usuário.", Toast.LENGTH_LONG).show();
-                                break;
                             default:
-                                Toast.makeText(getApplicationContext(), "Logado com sucesso.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Logado como usuário.", Toast.LENGTH_LONG).show();
                                 break;
                         }
                         Intent telaPrincipal = new Intent(LoginActivity.this, MainActivity.class);

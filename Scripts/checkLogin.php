@@ -24,7 +24,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $registro = mysqli_fetch_array($result);
         
         $response["erro"] = false;
-        $response["mensagem"] = "Registros encontrados.";
+        $response["mensagem"] = $result->num_rows." Registros encontrados.";
         $response["tipo"] = $registro['tipo'];
     }
     else{
