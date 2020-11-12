@@ -23,22 +23,26 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.pief.facampnetwork.R;
-import com.pief.facampnetwork.RecyclerAdapter;
+import com.pief.facampnetwork.MarketRecyclerAdapter;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MarketFragment extends Fragment {
 
-    //String url = "http://192.168.0.79/scripts/getProdutos.php";
+    String url = "http://192.168.0.79/scripts/getProdutos.php";
 
-    //StringRequest stringRequest;
-    //RequestQueue requestQueue;
+    StringRequest stringRequest;
+    RequestQueue requestQueue;
 
-    //RecyclerView recyclerView;
-    //RecyclerAdapter recyclerAdapter;
+    RecyclerView recyclerView;
+    MarketRecyclerAdapter marketRecyclerAdapter;
+
+    List<JSONObject> produtos;
 
     //TextView id, nome, preco, descricao, idUsuario, id2, nome2, preco2, descricao2, idUsuario2;
 
@@ -57,13 +61,13 @@ public class MarketFragment extends Fragment {
             }
         });
 
-        //requestQueue = Volley.newRequestQueue(getActivity());
-        //preencherProdutos(root);
+        requestQueue = Volley.newRequestQueue(getActivity());
+        preencherProdutos(root);
 
         return root;
     }
 
-    /*private void preencherProdutos(View view){
+    private void preencherProdutos(View view){
         stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
             @Override
             public void onResponse(String response){
@@ -75,7 +79,7 @@ public class MarketFragment extends Fragment {
                         Toast.makeText(getActivity().getApplicationContext(), jsonObject.getString("mensagem"), Toast.LENGTH_LONG).show();
                     }
                     else{
-                        id = (TextView)view.findViewById(R.id.idTextView);
+                        /*id = (TextView)view.findViewById(R.id.idTextView);
                         nome = (TextView)view.findViewById(R.id.nomeTextView);
                         preco = (TextView)view.findViewById(R.id.precoTextView);
                         descricao = (TextView)view.findViewById(R.id.descricaoTextView);
@@ -84,21 +88,27 @@ public class MarketFragment extends Fragment {
                         nome2 = (TextView)view.findViewById(R.id.nomeTextView2);
                         preco2 = (TextView)view.findViewById(R.id.precoTextView2);
                         descricao2 = (TextView)view.findViewById(R.id.descricaoTextView2);
-                        idUsuario2 = (TextView)view.findViewById(R.id.idUsuarioTextView2);
+                        idUsuario2 = (TextView)view.findViewById(R.id.idUsuarioTextView2);*/
 
 
 
                         Toast.makeText(getActivity().getApplicationContext(), jsonObject.getString("mensagem"), Toast.LENGTH_LONG).show();
 
-                        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.market_recyclerView);
+                        recyclerView = (RecyclerView)view.findViewById(R.id.market_recyclerView);
                         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                        RecyclerAdapter recyclerAdapter = new RecyclerAdapter();
 
-                        recyclerView.setAdapter(recyclerAdapter);
+                        produtos = new ArrayList<>();
+
+                        for (int i = 0; i < jsonObject.getInt("numeroProdutos"); i++){
+                            JSONObject produto = jsonObject.getJSONObject(String.valueOf(i));
+                            produtos.add(produto);
+                        }
+
+                        marketRecyclerAdapter = new MarketRecyclerAdapter(produtos);
+                        recyclerView.setAdapter(marketRecyclerAdapter);
 
 
-
-                        JSONObject produto1 = jsonObject.getJSONObject("0");
+                        /*JSONObject produto1 = jsonObject.getJSONObject("0");
 
                         id.setText(produto1.getString("id"));
                         nome.setText(produto1.getString("nome"));
@@ -112,7 +122,7 @@ public class MarketFragment extends Fragment {
                         nome2.setText(produto2.getString("nome"));
                         preco2.setText(produto2.getString("preco"));
                         descricao2.setText(produto2.getString("descricao"));
-                        idUsuario2.setText(produto2.getString("idUsuario"));
+                        idUsuario2.setText(produto2.getString("idUsuario"));*/
 
                     }
                 }catch(Exception e){
@@ -133,5 +143,5 @@ public class MarketFragment extends Fragment {
         };
 
         requestQueue.add(stringRequest);
-    }*/
+    }
 }

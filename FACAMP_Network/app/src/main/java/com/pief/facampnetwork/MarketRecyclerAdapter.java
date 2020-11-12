@@ -9,7 +9,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder>{
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.List;
+
+public class MarketRecyclerAdapter extends RecyclerView.Adapter<MarketRecyclerAdapter.ViewHolder>{
+
+    List<JSONObject> produtos;
+
+    public MarketRecyclerAdapter(List<JSONObject> produtos){
+        this.produtos = produtos;
+    }
 
     @NonNull
     @Override
@@ -22,12 +33,19 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return 20;
+        return produtos.size();
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+        JSONObject produto = produtos.get(position);
+        try {
+            holder.nome.setText(produto.getString("nome"));
+            holder.preco.setText("R$" + produto.getString("preco"));
+            holder.descricao.setText(produto.getString("descricao"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
