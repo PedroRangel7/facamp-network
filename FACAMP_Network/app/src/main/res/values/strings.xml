@@ -12,4 +12,5 @@
     <string name="enter">Entrar</string>
     <string name="add">Adicionar</string>
     <string name="market_add_button_description">Adicionar Produto</string>
+    <string name="product_photo_description">Foto do produto</string>
 </resources>

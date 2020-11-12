@@ -1,5 +1,8 @@
 package com.pief.facampnetwork;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +46,9 @@ public class MarketRecyclerAdapter extends RecyclerView.Adapter<MarketRecyclerAd
             holder.nome.setText(produto.getString("nome"));
             holder.preco.setText("R$" + produto.getString("preco"));
             holder.descricao.setText(produto.getString("descricao"));
+            byte[] decodedImageString = Base64.decode(produto.getString("imagem"), Base64.DEFAULT);
+            Bitmap imagem = BitmapFactory.decodeByteArray(decodedImageString, 0, decodedImageString.length);
+            holder.foto.setImageBitmap(imagem);
         } catch (JSONException e) {
             e.printStackTrace();
         }
