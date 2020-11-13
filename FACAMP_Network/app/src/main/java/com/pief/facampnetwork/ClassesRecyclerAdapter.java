@@ -45,7 +45,9 @@ public class ClassesRecyclerAdapter extends RecyclerView.Adapter<ClassesRecycler
         try {
             holder.materia.setText(aula.getString("materia"));
             holder.descricao.setText(aula.getString("descricao"));
-            holder.preco.setText("R$" + aula.getString("preco"));
+            String precoString = "R$" + String.format("%.2f", aula.getDouble("preco"));
+            precoString = precoString.replace(".", ",");
+            holder.preco.setText(precoString);
             holder.dataAula.setText(aula.getString("dataAula"));
         } catch (JSONException e) {
             e.printStackTrace();

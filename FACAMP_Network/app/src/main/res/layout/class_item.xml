@@ -41,7 +41,7 @@
         android:maxLines="4"
         android:text="@string/description"
         android:textColor="@color/white"
-        android:textSize="12sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/materia"
         app:layout_constraintTop_toBottomOf="@+id/materia" />
 

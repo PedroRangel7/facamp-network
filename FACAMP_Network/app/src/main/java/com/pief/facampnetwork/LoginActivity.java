@@ -76,22 +76,9 @@ public class LoginActivity extends AppCompatActivity {
                 try{
                     JSONObject jsonObject = new JSONObject(response);
                     boolean erro = jsonObject.getBoolean("erro");
-                    if(erro){
-                        Toast.makeText(getApplicationContext(), jsonObject.getString("mensagem"), Toast.LENGTH_SHORT).show();
-                    }
-                    else{
+                    Toast.makeText(getApplicationContext(), jsonObject.getString("mensagem"), Toast.LENGTH_SHORT).show();
+                    if(!erro){
                         int tipoUsuario = jsonObject.getInt("tipo");
-                        switch (tipoUsuario){
-                            case 1:
-                                Toast.makeText(getApplicationContext(), "Logado como administrador.", Toast.LENGTH_SHORT).show();
-                                break;
-                            case 2:
-                                Toast.makeText(getApplicationContext(), "Logado como moderador.", Toast.LENGTH_SHORT).show();
-                                break;
-                            default:
-                                Toast.makeText(getApplicationContext(), "Logado como usuário.", Toast.LENGTH_SHORT).show();
-                                break;
-                        }
                         Intent telaPrincipal = new Intent(LoginActivity.this, MainActivity.class);
                         telaPrincipal.putExtra("ID_SESSAO", jsonObject.getInt("id"));
                         telaPrincipal.putExtra("TIPO_SESSAO", tipoUsuario);

@@ -10,9 +10,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -97,6 +99,10 @@ public class MarketFragment extends Fragment {
 
                         marketRecyclerAdapter = new MarketRecyclerAdapter(produtos);
                         recyclerView.setAdapter(marketRecyclerAdapter);
+
+                        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity().getApplicationContext(), DividerItemDecoration.VERTICAL);
+                        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.horizontal_divider));
+                        recyclerView.addItemDecoration(dividerItemDecoration);
                     }
                 }catch(Exception e){
                     Log.e("Market", e.getMessage());

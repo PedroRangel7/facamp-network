@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class MarketRecyclerAdapter extends RecyclerView.Adapter<MarketRecyclerAdapter.ViewHolder>{
@@ -44,7 +45,9 @@ public class MarketRecyclerAdapter extends RecyclerView.Adapter<MarketRecyclerAd
         JSONObject produto = produtos.get(position);
         try {
             holder.nome.setText(produto.getString("nome"));
-            holder.preco.setText("R$" + produto.getString("preco"));
+            String precoString = "R$" + String.format("%.2f", produto.getDouble("preco"));
+            precoString = precoString.replace(".", ",");
+            holder.preco.setText(precoString);
             holder.descricao.setText(produto.getString("descricao"));
             byte[] decodedImageString = Base64.decode(produto.getString("imagem"), Base64.DEFAULT);
             Bitmap imagem = BitmapFactory.decodeByteArray(decodedImageString, 0, decodedImageString.length);
