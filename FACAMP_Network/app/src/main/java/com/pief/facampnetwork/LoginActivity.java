@@ -94,6 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         Intent telaPrincipal = new Intent(LoginActivity.this, MainActivity.class);
                         telaPrincipal.putExtra("ID_SESSAO", jsonObject.getInt("id"));
+                        telaPrincipal.putExtra("TIPO_SESSAO", tipoUsuario);
                         startActivity(telaPrincipal);
                         finish();
                     }

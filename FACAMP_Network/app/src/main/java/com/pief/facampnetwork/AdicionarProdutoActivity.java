@@ -91,7 +91,6 @@ public class AdicionarProdutoActivity extends AppCompatActivity {
             }
         };
 
-        requestQueue.getCache().clear();
         requestQueue.add(stringRequest);
     }
 }

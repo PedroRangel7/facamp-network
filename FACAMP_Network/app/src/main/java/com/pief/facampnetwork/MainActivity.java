@@ -31,9 +31,11 @@ import java.util.zip.Inflater;
 public class MainActivity extends AppCompatActivity {
 
     private static int idSessao;
+    private static int tipoSessao;
     public static int getIDSessao(){
         return idSessao;
     }
+    public static int getTipoSessao(){return tipoSessao;}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
         idSessao = getIntent().getIntExtra("ID_SESSAO", -1);
-        Log.i("Sessao", String.valueOf(idSessao));
+        tipoSessao = getIntent().getIntExtra("TIPO_SESSAO", 3);
+        Log.i("Sessao", "ID: " + String.valueOf(idSessao));
+        Log.i("Sessao", "Tipo: " + String.valueOf(tipoSessao));
     }
 }
