@@ -22,9 +22,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     if($result->num_rows > 0){
         $registro = mysqli_fetch_array($result);
+
+        $sql = "SELECT * FROM tipo_usuario WHERE id = $registro[tipo]";
+        $result = $conn->query($sql);
+        $tipoUsuario = mysqli_fetch_array($result);
         
         $response["erro"] = false;
-        $response["mensagem"] = $result->num_rows." Registros encontrados.";
+        $response["mensagem"] = "Logado como ".$tipoUsuario['tipo'];
         $response["id"] = $registro['id'];
         $response["tipo"] = $registro['tipo'];
     }

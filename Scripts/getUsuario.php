@@ -21,15 +21,20 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     if($result->num_rows > 0){
         $registro = mysqli_fetch_array($result);
+
+        $sql = "SELECT * FROM tipo_usuario WHERE id = $registro[tipo]";
+        $result = $conn->query($sql);
+        $tipoUsuario = mysqli_fetch_array($result);
         
         $response["erro"] = false;
         $response["mensagem"] = "Usuário encontrado.";
         $response["id"] = $registro['id'];
         $response["nome"] = $registro['nome'];
         $response["telefone"] = $registro['telefone'];
-        $response["endereco"] = $registro['endereco'];
         $response["biografia"] = $registro['biografia'];
         $response["tipo"] = $registro['tipo'];
+        $response["tipoString"] = $tipoUsuario['tipo'];
+        $response["foto"] = base64_encode($registro['foto']);
     }
     else{
         $response["mensagem"] = "Usuário não encontrado.";

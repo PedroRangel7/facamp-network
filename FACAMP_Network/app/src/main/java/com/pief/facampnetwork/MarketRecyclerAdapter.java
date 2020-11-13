@@ -1,5 +1,7 @@
 package com.pief.facampnetwork;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -64,10 +67,34 @@ public class MarketRecyclerAdapter extends RecyclerView.Adapter<MarketRecyclerAd
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            Context context = itemView.getContext();
+
             foto = itemView.findViewById(R.id.fotoProduto);
             nome = itemView.findViewById(R.id.nomeProduto);
             descricao = itemView.findViewById(R.id.descricaoProduto);
             preco = itemView.findViewById(R.id.precoProduto);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    JSONObject clickedProduto = produtos.get(getAdapterPosition());
+                    final Intent telaProduto;
+                    telaProduto = new Intent(context, ProdutoActivity.class);
+                    try {
+                        telaProduto.putExtra("NOME", clickedProduto.getString("nome"));
+                        telaProduto.putExtra("PRECO", clickedProduto.getDouble("preco"));
+                        telaProduto.putExtra("DESCRICAO", clickedProduto.getString("descricao"));
+
+                        byte[] decodedImageString = Base64.decode(clickedProduto.getString("imagem"), Base64.DEFAULT);
+                        telaProduto.putExtra("IMAGEM_BYTES", decodedImageString);
+
+                        telaProduto.putExtra("ID_USUARIO", clickedProduto.getInt("idUsuario"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    context.startActivity(telaProduto);
+                }
+            });
         }
     }
 }

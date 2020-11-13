@@ -31,4 +31,7 @@
     <string name="phone">Telefone</string>
     <string name="phone_icon">Ícone do Telefone</string>
     <string name="biography">Biografia</string>
+    <string name="seller">Vendedor</string>
+    <string name="seller_page">Página do Vendedor</string>
+    <string name="delete">Deletar</string>
 </resources>
