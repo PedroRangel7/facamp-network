@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -84,12 +83,8 @@ public class MarketFragment extends Fragment {
                 try{
                     JSONObject jsonObject = new JSONObject(response);
                     boolean erro = jsonObject.getBoolean("erro");
-                    if(erro){
-                        Toast.makeText(getActivity().getApplicationContext(), jsonObject.getString("mensagem"), Toast.LENGTH_LONG).show();
-                    }
-                    else{
-                        Toast.makeText(getActivity().getApplicationContext(), jsonObject.getString("mensagem"), Toast.LENGTH_LONG).show();
-
+                    Toast.makeText(getActivity().getApplicationContext(), jsonObject.getString("mensagem"), Toast.LENGTH_SHORT).show();
+                    if(!erro){
                         recyclerView = (RecyclerView)view.findViewById(R.id.market_recyclerView);
                         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 

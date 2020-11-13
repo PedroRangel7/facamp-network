@@ -16,7 +16,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.pief.facampnetwork.ui.market.MarketFragment;
 
 import org.json.JSONObject;
 
@@ -40,10 +39,10 @@ public class AdicionarProdutoActivity extends AppCompatActivity {
 
         requestQueue = Volley.newRequestQueue(this);
 
-        buttonAdicionar = findViewById(R.id.buttonAdicionar);
-        editNome = findViewById(R.id.editNome);
-        editPreco = findViewById(R.id.editPreco);
-        editDescricao = findViewById(R.id.editDescricao);
+        buttonAdicionar = findViewById(R.id.buttonAdicionarProduto);
+        editNome = findViewById(R.id.editNomeProduto);
+        editPreco = findViewById(R.id.editPrecoProduto);
+        editDescricao = findViewById(R.id.editDescricaoProduto);
 
         buttonAdicionar.setOnClickListener(new View.OnClickListener(){
             @Override

@@ -61,14 +61,10 @@ public class MarketRecyclerAdapter extends RecyclerView.Adapter<MarketRecyclerAd
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            foto = itemView.findViewById(R.id.foto);
-            nome = itemView.findViewById(R.id.nome);
-            descricao = itemView.findViewById(R.id.descricao);
-            preco = itemView.findViewById(R.id.preco);
-        }
-
-        public TextView getNome(){
-            return nome;
+            foto = itemView.findViewById(R.id.fotoProduto);
+            nome = itemView.findViewById(R.id.nomeProduto);
+            descricao = itemView.findViewById(R.id.descricaoProduto);
+            preco = itemView.findViewById(R.id.precoProduto);
         }
     }
 }

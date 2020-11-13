@@ -7,54 +7,54 @@
     android:background="@color/grey_38">
 
     <ImageView
-        android:id="@+id/foto"
+        android:id="@+id/fotoProduto"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:contentDescription="@string/product_photo_description"
+        android:contentDescription="@string/description_product_photo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_camera" />
 
     <TextView
-        android:id="@+id/nome"
+        android:id="@+id/nomeProduto"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:maxLines="1"
-        android:text="@string/name_hint"
+        android:text="@string/name"
         android:textColor="@color/blue"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/preco"
-        app:layout_constraintStart_toEndOf="@+id/foto"
+        app:layout_constraintEnd_toStartOf="@+id/precoProduto"
+        app:layout_constraintStart_toEndOf="@+id/fotoProduto"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/descricao"
+        android:id="@+id/descricaoProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="2dp"
         android:maxEms="20"
         android:maxLines="4"
-        android:text="@string/description_hint"
+        android:text="@string/description"
         android:textColor="@color/white"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/nome"
-        app:layout_constraintTop_toBottomOf="@+id/nome" />
+        app:layout_constraintStart_toStartOf="@+id/nomeProduto"
+        app:layout_constraintTop_toBottomOf="@+id/nomeProduto" />
 
     <TextView
-        android:id="@+id/preco"
+        android:id="@+id/precoProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="@string/price_hint"
+        android:text="@string/price"
         android:textColor="@color/green"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"

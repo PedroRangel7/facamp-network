@@ -4,6 +4,89 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_38"
     tools:context=".AdicionarAulaActivity">
+
+    <EditText
+        android:id="@+id/editMateria"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="130dp"
+        android:background="@color/dark_blue"
+        android:ems="10"
+        android:hint="@string/subject"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="@color/light_grey"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editPrecoAula"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/dark_blue"
+        android:ems="10"
+        android:hint="@string/price"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="@color/light_grey"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editMateria" />
+
+    <EditText
+        android:id="@+id/editDataAula"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/dark_blue"
+        android:ems="10"
+        android:hint="@string/date"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="@color/light_grey"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPrecoAula" />
+
+    <EditText
+        android:id="@+id/editDescricaoAula"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@color/dark_blue"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="@string/description"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"
+        android:maxLength="100"
+        android:maxLines="8"
+        android:textColor="@color/white"
+        android:textColorHint="@color/light_grey"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editDataAula" />
+
+    <Button
+        android:id="@+id/buttonAdicionarAula"
+        android:layout_width="240dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="48dp"
+        android:text="@string/add"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editDescricaoAula" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

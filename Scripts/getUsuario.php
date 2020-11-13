@@ -14,22 +14,25 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         die("Conexão falhou.");
     }
 
-    $login = "'".$_POST['login']."'";
-    $senha = "'".$_POST['senha']."'";
+    $idUsuario = "'".$_POST['idUsuario']."'";
 
-    $sql = "SELECT * FROM usuario WHERE login = $login AND senha = $senha";
+    $sql = "SELECT * FROM usuario WHERE id = $idUsuario";
     $result = $conn->query($sql);
 
     if($result->num_rows > 0){
         $registro = mysqli_fetch_array($result);
         
         $response["erro"] = false;
-        $response["mensagem"] = $result->num_rows." Registros encontrados.";
+        $response["mensagem"] = "Usuário encontrado.";
         $response["id"] = $registro['id'];
+        $response["nome"] = $registro['nome'];
+        $response["telefone"] = $registro['telefone'];
+        $response["endereco"] = $registro['endereco'];
+        $response["biografia"] = $registro['biografia'];
         $response["tipo"] = $registro['tipo'];
     }
     else{
-        $response["mensagem"] = "Dados inválidos.";
+        $response["mensagem"] = "Usuário não encontrado.";
     }
 
     $conn->close();
