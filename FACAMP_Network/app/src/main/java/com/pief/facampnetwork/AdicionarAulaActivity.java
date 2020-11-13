@@ -61,11 +61,8 @@ public class AdicionarAulaActivity extends AppCompatActivity {
                 try{
                     JSONObject jsonObject = new JSONObject(response);
                     boolean erro = jsonObject.getBoolean("erro");
-                    if(erro){
-                        Toast.makeText(getApplicationContext(), jsonObject.getString("mensagem"), Toast.LENGTH_LONG).show();
-                    }
-                    else{
-                        Toast.makeText(getApplicationContext(), jsonObject.getString("mensagem"), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), jsonObject.getString("mensagem"), Toast.LENGTH_SHORT).show();
+                    if(!erro){
                         Intent telaPrincipal = new Intent(AdicionarAulaActivity.this, MainActivity.class);
                         startActivity(telaPrincipal);
                         finish();

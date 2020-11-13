@@ -25,4 +25,10 @@
     <string name="to">Destino</string>
     <string name="sign">Placa</string>
     <string name="subject">Matéria</string>
+    <string name="description_foto_perfil">Foto do Perfil</string>
+    <string name="name_nickname">Nome, Sobrenome</string>
+    <string name="user_tipe">Tipo de Usuário</string>
+    <string name="phone">Telefone</string>
+    <string name="phone_icon">Ícone do Telefone</string>
+    <string name="biography">Biografia</string>
 </resources>

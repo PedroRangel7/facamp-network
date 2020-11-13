@@ -5,4 +5,81 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey_38"
-    tools:context=".ui.profile.ProfileFragment"/>
+    tools:context=".ui.profile.ProfileFragment">
+
+    <ImageView
+        android:id="@+id/fotoUsuario"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/description_foto_perfil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/textNomeSobrenome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/name_nickname"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fotoUsuario" />
+
+    <TextView
+        android:id="@+id/textTipoUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="@string/user_tipe"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textNomeSobrenome" />
+
+    <TextView
+        android:id="@+id/textBiografia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:maxEms="10"
+        android:maxLength="80"
+        android:text="@string/biography"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTelefone" />
+
+    <TextView
+        android:id="@+id/textTelefone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/phone"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTipoUsuario" />
+
+    <ImageView
+        android:id="@+id/imageTelefone"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="4dp"
+        android:contentDescription="@string/phone_icon"
+        android:src="@android:drawable/stat_sys_speakerphone"
+        app:layout_constraintBottom_toBottomOf="@+id/textTelefone"
+        app:layout_constraintEnd_toStartOf="@+id/textTelefone"
+        app:layout_constraintTop_toTopOf="@+id/textTelefone"
+        app:tint="@color/green" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
