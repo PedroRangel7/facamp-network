@@ -1,13 +1,23 @@
 package com.pief.facampnetwork;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -19,17 +29,25 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 public class AdicionarProdutoActivity extends AppCompatActivity {
 
+    private static final int IMAGE_PICK_CODE = 1000;
+    private static final int PERMISSION_CODE = 1001;
+
+    Bitmap bitmap;
     String adicionarProdutoURL = "http://192.168.0.79/scripts/addProduto.php";
 
     StringRequest stringRequest;
     RequestQueue requestQueue;
 
     Button buttonAdicionar;
+    ImageView imagem;
     EditText editNome, editPreco, editDescricao;
 
     @Override
@@ -40,6 +58,7 @@ public class AdicionarProdutoActivity extends AppCompatActivity {
         requestQueue = Singleton.getInstance(this.getApplicationContext()).getRequestQueue();
 
         buttonAdicionar = findViewById(R.id.buttonAdicionarProduto);
+        imagem = findViewById(R.id.imageViewProduto);
         editNome = findViewById(R.id.editNomeProduto);
         editPreco = findViewById(R.id.editPrecoProduto);
         editDescricao = findViewById(R.id.editDescricaoProduto);
@@ -47,7 +66,24 @@ public class AdicionarProdutoActivity extends AppCompatActivity {
         buttonAdicionar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                buttonAdicionar.setEnabled(false);
                 adicionarProduto();
+            }
+        });
+
+        imagem.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
+                        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+                        requestPermissions(permissions, PERMISSION_CODE);
+                    }
+                    else
+                        escolherImagem();
+                }
+                else
+                    escolherImagem();
             }
         });
     }
@@ -79,14 +115,53 @@ public class AdicionarProdutoActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<>();
+                String imagem = imagemToString(bitmap);
                 params.put("nome", editNome.getText().toString());
                 params.put("preco", editPreco.getText().toString());
                 params.put("descricao", editDescricao.getText().toString());
                 params.put("idUsuario", String.valueOf(MainActivity.getIDSessao()));
+                params.put("imagem", imagem);
                 return params;
             }
         };
 
         Singleton.getInstance(this).addToRequestQueue(stringRequest);
+    }
+
+    private void escolherImagem(){
+        Intent escolherImg = new Intent(Intent.ACTION_PICK);
+        escolherImg.setType("image/*");
+        startActivityForResult(escolherImg, IMAGE_PICK_CODE);
+    }
+
+    private String imagemToString(Bitmap btmp){
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        btmp.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        byte[] imagemBytes = byteArrayOutputStream.toByteArray();
+        String imagemString = Base64.encodeToString(imagemBytes, Base64.DEFAULT);
+        return imagemString;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == PERMISSION_CODE){
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                escolherImagem();
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE) {
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(data.getData());
+                bitmap = BitmapFactory.decodeStream(inputStream);
+                imagem.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

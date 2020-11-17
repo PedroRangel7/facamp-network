@@ -48,6 +48,7 @@ public class AdicionarAulaActivity extends AppCompatActivity {
         buttonAdicionar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                buttonAdicionar.setEnabled(false);
                 adicionarAula();
             }
         });

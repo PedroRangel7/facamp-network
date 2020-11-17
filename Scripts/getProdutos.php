@@ -26,7 +26,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $response[$i]["nome"] = $row[1];
             $response[$i]["preco"] = $row[2];
             $response[$i]["descricao"] = $row[3];
-            $response[$i]["imagem"] = base64_encode($row[4]);
+            $response[$i]["imagem"] = base64_decode($row[4]);
             $response[$i]["idUsuario"] = $row[5];
             $i++;
         }

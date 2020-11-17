@@ -17,11 +17,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $nome = "'".$_POST['nome']."'";
     $preco = "'".$_POST['preco']."'";
     $descricao = "'".$_POST['descricao']."'";
+    $imagemRecebida = $_POST['imagem'];
     $idUsuario = "'".$_POST['idUsuario']."'";
 
+    $imagemBuffer = "'".base64_encode($imagemRecebida)."'";
     $preco = str_replace(",", ".", $preco);
 
-    $sql = "INSERT INTO produto (nome, preco, descricao, idUsuario) VALUES ($nome, $preco, $descricao, $idUsuario)";
+    $sql = "INSERT INTO produto (nome, preco, descricao, imagem, idUsuario) VALUES ($nome, $preco, $descricao, $imagemBuffer, $idUsuario)";
 
     if ($conn->query($sql) === TRUE) {
         $response["erro"] = false;
