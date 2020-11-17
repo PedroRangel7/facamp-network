@@ -34,4 +34,6 @@
     <string name="seller">Vendedor</string>
     <string name="seller_page">Página do Vendedor</string>
     <string name="delete">Deletar</string>
+    <string name="driver_page">Página do Motorista</string>
+    <string name="tutor_page">Página do Tutor</string>
 </resources>

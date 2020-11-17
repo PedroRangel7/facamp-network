@@ -4,6 +4,107 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_38"
     tools:context=".CaronaActivity">
+
+    <TextView
+        android:id="@+id/textValorSaida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/from"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@+id/textSaida"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textSaida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/from_colon"
+        android:textColor="@color/blue"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textValorSaida" />
+
+    <TextView
+        android:id="@+id/textDestino"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/to_colon"
+        android:textColor="@color/blue"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textValorDestino" />
+
+    <TextView
+        android:id="@+id/textValorDestino"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="8dp"
+        android:maxEms="10"
+        android:maxLength="85"
+        android:text="@string/to"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@+id/textDestino"
+        app:layout_constraintTop_toBottomOf="@+id/textValorSaida" />
+
+    <TextView
+        android:id="@+id/textPlaca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:maxEms="10"
+        android:maxLength="85"
+        android:text="@string/sign"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPrecoCarona" />
+
+    <TextView
+        android:id="@+id/textDataCarona"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:maxEms="10"
+        android:maxLength="85"
+        android:text="@string/date"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textValorDestino" />
+
+    <TextView
+        android:id="@+id/textPrecoCarona"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/price"
+        android:textColor="@color/green"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDataCarona" />
+
+    <Button
+        android:id="@+id/buttonPaginaMotorista"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/driver_page"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPlaca" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

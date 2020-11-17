@@ -1,12 +1,10 @@
 package com.pief.facampnetwork;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,7 +27,7 @@ public class RidesRecyclerAdapter extends RecyclerView.Adapter<RidesRecyclerAdap
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.ride_item, parent, false);
+        View view = layoutInflater.inflate(R.layout.item_carona, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
@@ -64,6 +62,27 @@ public class RidesRecyclerAdapter extends RecyclerView.Adapter<RidesRecyclerAdap
             destino = itemView.findViewById(R.id.valorDestino);
             preco = itemView.findViewById(R.id.precoCarona);
             dataCarona = itemView.findViewById(R.id.dataCarona);
+
+            Context context = itemView.getContext();
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    JSONObject clickedCarona = caronas.get(getAdapterPosition());
+                    final Intent telaCarona;
+                    telaCarona = new Intent(context, CaronaActivity.class);
+                    try {
+                        telaCarona.putExtra("SAIDA", clickedCarona.getString("saida"));
+                        telaCarona.putExtra("DESTINO", clickedCarona.getString("destino"));
+                        telaCarona.putExtra("DATA", clickedCarona.getString("dataCarona"));
+                        telaCarona.putExtra("PRECO", clickedCarona.getDouble("preco"));
+                        telaCarona.putExtra("PLACA", clickedCarona.getString("placa"));
+                        telaCarona.putExtra("ID_USUARIO", clickedCarona.getInt("idUsuario"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    context.startActivity(telaCarona);
+                }
+            });
         }
     }
 }

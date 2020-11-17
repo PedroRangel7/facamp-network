@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 public class MarketRecyclerAdapter extends RecyclerView.Adapter<MarketRecyclerAdapter.ViewHolder>{
@@ -33,7 +31,7 @@ public class MarketRecyclerAdapter extends RecyclerView.Adapter<MarketRecyclerAd
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.market_item, parent, false);
+        View view = layoutInflater.inflate(R.layout.item_produto, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
@@ -67,13 +65,12 @@ public class MarketRecyclerAdapter extends RecyclerView.Adapter<MarketRecyclerAd
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            Context context = itemView.getContext();
-
             foto = itemView.findViewById(R.id.fotoProduto);
             nome = itemView.findViewById(R.id.nomeProduto);
             descricao = itemView.findViewById(R.id.descricaoProduto);
             preco = itemView.findViewById(R.id.precoProduto);
 
+            Context context = itemView.getContext();
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

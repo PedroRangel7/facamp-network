@@ -11,8 +11,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 public class ProdutoActivity extends AppCompatActivity {
 
     private int idUsuario;
@@ -23,7 +21,7 @@ public class ProdutoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_produto);
 
-        buttonPaginaVendedor = findViewById(R.id.buttonVendedorProduto);
+        buttonPaginaVendedor = findViewById(R.id.buttonPaginaVendedor);
 
         String nome = getIntent().getStringExtra("NOME");
         double preco = getIntent().getDoubleExtra("PRECO", 0);
