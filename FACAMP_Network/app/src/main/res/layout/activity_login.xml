@@ -9,7 +9,7 @@
 
     <Button
         android:id="@+id/buttonEntrar"
-        android:layout_width="240dp"
+        android:layout_width="wrap_content"
         android:layout_height="72dp"
         android:layout_marginTop="80dp"
         android:text="@string/enter"
@@ -18,11 +18,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editSenha" />
 
+    <Button
+        android:id="@+id/buttonCriarConta"
+        android:layout_width="wrap_content"
+        android:layout_height="72dp"
+        android:layout_marginTop="100dp"
+        android:text="@string/create_account"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonEntrar" />
+
     <EditText
         android:id="@+id/editLogin"
         android:layout_width="240dp"
         android:layout_height="40dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="180dp"
         android:background="@color/dark_blue"
         android:ems="10"
         android:hint="@string/login"

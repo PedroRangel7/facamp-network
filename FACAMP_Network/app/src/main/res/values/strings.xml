@@ -36,4 +36,6 @@
     <string name="delete">Deletar</string>
     <string name="driver_page">Página do Motorista</string>
     <string name="tutor_page">Página do Tutor</string>
+    <string name="register">Registrar</string>
+    <string name="create_account">Criar Conta</string>
 </resources>

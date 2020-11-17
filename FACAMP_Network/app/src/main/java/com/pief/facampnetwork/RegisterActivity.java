@@ -22,32 +22,40 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
-    String loginURL = "http://192.168.0.79/scripts/checkLogin.php";
+    String registerURL = "http://192.168.0.79/scripts/registerUsuario.php";
 
     StringRequest stringRequest;
     RequestQueue requestQueue;
 
-    Button buttonEntrar, buttonCriarConta;
-    EditText editLogin, editSenha;
+    Button buttonRegistrar;
+    EditText editLogin, editNome, editSenha, editTelefone, editBiografia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
 
         requestQueue = Volley.newRequestQueue(this);
 
-        buttonEntrar = findViewById(R.id.buttonEntrar);
-        editLogin = findViewById(R.id.editLogin);
-        editSenha = findViewById(R.id.editSenha);
-        buttonCriarConta = findViewById(R.id.buttonCriarConta);
+        buttonRegistrar = findViewById(R.id.buttonRegistrar);
+        editNome = findViewById(R.id.editNomeRegister);
+        editLogin = findViewById(R.id.editLoginRegister);
+        editSenha = findViewById(R.id.editSenhaRegister);
+        editTelefone = findViewById(R.id.editTelefoneRegister);
+        editBiografia = findViewById(R.id.editBiografiaRegister);
 
-        buttonEntrar.setOnClickListener(new View.OnClickListener(){
+        buttonRegistrar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 boolean validado = true;
+
+                if(editNome.getText().length() == 0){
+                    editNome.setError("Campo obrigatório.");
+                    editNome.requestFocus();
+                    validado = false;
+                }
 
                 if(editSenha.getText().length() == 0){
                     editSenha.setError("Campo obrigatório.");
@@ -62,54 +70,44 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 if(validado){
-                    //Toast.makeText(getApplicationContext(), "Validando dados...", Toast.LENGTH_SHORT).show();
-                    validarLogin();
+                    registrarUsuario();
                 }
-            }
-        });
-
-        buttonCriarConta.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent telaRegistro = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(telaRegistro);
-                finish();
             }
         });
     }
 
-    private void validarLogin(){
-        stringRequest = new StringRequest(Request.Method.POST, loginURL, new Response.Listener<String>(){
+    private void registrarUsuario(){
+        stringRequest = new StringRequest(Request.Method.POST, registerURL, new Response.Listener<String>(){
             @Override
             public void onResponse(String response){
-                Log.i("Login", response);
+                Log.i("Register", response);
                 try{
                     JSONObject jsonObject = new JSONObject(response);
                     boolean erro = jsonObject.getBoolean("erro");
                     Toast.makeText(getApplicationContext(), jsonObject.getString("mensagem"), Toast.LENGTH_SHORT).show();
                     if(!erro){
-                        int tipoUsuario = jsonObject.getInt("tipo");
-                        Intent telaPrincipal = new Intent(LoginActivity.this, MainActivity.class);
-                        telaPrincipal.putExtra("ID_SESSAO", jsonObject.getInt("id"));
-                        telaPrincipal.putExtra("TIPO_SESSAO", tipoUsuario);
-                        startActivity(telaPrincipal);
+                        Intent telaLogin = new Intent(RegisterActivity.this, LoginActivity.class);
+                        startActivity(telaLogin);
                         finish();
                     }
                 }catch(Exception e){
-                    Log.e("Login", e.getMessage());
+                    Log.e("Register", e.getMessage());
                 }
             }
         }, new Response.ErrorListener(){
             @Override
             public void onErrorResponse(VolleyError error){
-                Log.e("Login", error.getMessage());
+                Log.e("Register", error.getMessage());
             }
         }) {
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<>();
+                params.put("nome", editNome.getText().toString());
                 params.put("login", editLogin.getText().toString());
                 params.put("senha", editSenha.getText().toString());
+                params.put("telefone", editTelefone.getText().toString());
+                params.put("biografia", editBiografia.getText().toString());
                 return params;
             }
         };
