@@ -2,6 +2,7 @@ package com.pief.facampnetwork;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -47,7 +48,9 @@ public class ProdutoActivity extends AppCompatActivity {
         buttonPaginaVendedor.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                // ENTRAR NA TELA DO VENDEDOR
+                Intent telaUsuario = new Intent(getApplicationContext(), UsuarioActivity.class);
+                telaUsuario.putExtra("ID_USUARIO", idUsuario);
+                startActivity(telaUsuario);
             }
         });
     }
