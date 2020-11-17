@@ -37,7 +37,7 @@ public class AdicionarCaronaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar_carona);
 
-        requestQueue = Volley.newRequestQueue(this);
+        requestQueue = Singleton.getInstance(this.getApplicationContext()).getRequestQueue();
 
         buttonAdicionar = findViewById(R.id.buttonAdicionarCarona);
         editSaida = findViewById(R.id.editSaida);
@@ -91,6 +91,6 @@ public class AdicionarCaronaActivity extends AppCompatActivity {
             }
         };
 
-        requestQueue.add(stringRequest);
+        Singleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 }

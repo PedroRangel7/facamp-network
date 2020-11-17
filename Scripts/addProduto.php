@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $preco = str_replace(",", ".", $preco);
 
-    $sql = "INSERT INTO produto (id, nome, preco, descricao, imagem, idUsuario) VALUES (NULL, $nome, $preco, $descricao, NULL, $idUsuario)";
+    $sql = "INSERT INTO produto (nome, preco, descricao, idUsuario) VALUES ($nome, $preco, $descricao, $idUsuario)";
 
     if ($conn->query($sql) === TRUE) {
         $response["erro"] = false;

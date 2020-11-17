@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        requestQueue = Volley.newRequestQueue(this);
+        requestQueue = Singleton.getInstance(this.getApplicationContext()).getRequestQueue();
 
         buttonEntrar = findViewById(R.id.buttonEntrar);
         editLogin = findViewById(R.id.editLogin);
@@ -114,6 +114,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
 
-        requestQueue.add(stringRequest);
+        Singleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 }

@@ -37,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        requestQueue = Volley.newRequestQueue(this);
+        requestQueue = Singleton.getInstance(this.getApplicationContext()).getRequestQueue();
 
         buttonRegistrar = findViewById(R.id.buttonRegistrar);
         editNome = findViewById(R.id.editNomeRegister);
@@ -112,6 +112,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         };
 
-        requestQueue.add(stringRequest);
+        Singleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 }

@@ -14,22 +14,20 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         die("Conexão falhou.");
     }
 
-    $materia = "'".$_POST['materia']."'";
-    $descricao = "'".$_POST['descricao']."'";
-    $preco = "'".$_POST['preco']."'";
-    $dataAula = "'".$_POST['dataAula']."'";
-    $idUsuario = "'".$_POST['idUsuario']."'";
+    $nome = "'".$_POST['nome']."'";
+    $login = "'".$_POST['login']."'";
+    $senha = "'".$_POST['senha']."'";
+    $telefone = "'".$_POST['telefone']."'";
+    $biografia = "'".$_POST['biografia']."'";
 
-    $preco = str_replace(",", ".", $preco);
-
-    $sql = "INSERT INTO aula (materia, descricao, preco, dataAula, idUsuario) VALUES ($materia, $descricao, $preco, $dataAula, $idUsuario)";
+    $sql = "INSERT INTO usuario (nome, login, senha, telefone, biografia) VALUES ($nome, $login, $senha, $telefone, $biografia)";
 
     if ($conn->query($sql) === TRUE) {
         $response["erro"] = false;
-        $response["mensagem"] = "Aula adicionada com sucesso.";
+        $response["mensagem"] = "Registrado com sucesso.";
     }
     else {
-        $response["mensagem"] = "A aula não pôde ser adicionada. Tente novamente.";
+        $response["mensagem"] = "Não foi possível registrar. Tente novamente.";
     }
 
     $conn->close();

@@ -89,7 +89,7 @@ public class ProfileFragment extends Fragment {
                         Bitmap fotoBitmap = BitmapFactory.decodeByteArray(decodedImageString, 0, decodedImageString.length);
                         foto.setImageBitmap(fotoBitmap);
 
-                        switch(jsonObject.getInt("tipo")){
+                        switch(MainActivity.getTipoSessao()){
                             case 1:
                                 tipoUsuario.setTextColor(ContextCompat.getColor(getContext(), R.color.red));
                                 break;

@@ -37,7 +37,7 @@ public class AdicionarProdutoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar_produto);
 
-        requestQueue = Volley.newRequestQueue(this);
+        requestQueue = Singleton.getInstance(this.getApplicationContext()).getRequestQueue();
 
         buttonAdicionar = findViewById(R.id.buttonAdicionarProduto);
         editNome = findViewById(R.id.editNomeProduto);
@@ -87,6 +87,6 @@ public class AdicionarProdutoActivity extends AppCompatActivity {
             }
         };
 
-        requestQueue.add(stringRequest);
+        Singleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 }

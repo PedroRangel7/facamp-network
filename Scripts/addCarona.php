@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $preco = str_replace(",", ".", $preco);
 
-    $sql = "INSERT INTO carona (id, saida, destino, preco, placa, dataCarona, idUsuario) VALUES (NULL, $saida, $destino, $preco, $placa, $dataCarona, $idUsuario)";
+    $sql = "INSERT INTO carona (saida, destino, preco, placa, dataCarona, idUsuario) VALUES ($saida, $destino, $preco, $placa, $dataCarona, $idUsuario)";
 
     if ($conn->query($sql) === TRUE) {
         $response["erro"] = false;

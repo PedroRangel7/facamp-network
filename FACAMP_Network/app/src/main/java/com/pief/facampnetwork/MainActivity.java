@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        idSessao = getIntent().getIntExtra("ID_SESSAO", -1);
-        tipoSessao = getIntent().getIntExtra("TIPO_SESSAO", 3);
+        idSessao = getIntent().getIntExtra("ID_SESSAO", idSessao);
+        tipoSessao = getIntent().getIntExtra("TIPO_SESSAO", tipoSessao);
         Log.i("Sessao", "ID: " + String.valueOf(idSessao));
         Log.i("Sessao", "Tipo: " + String.valueOf(tipoSessao));
     }

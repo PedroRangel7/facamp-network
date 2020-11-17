@@ -37,7 +37,7 @@ public class AdicionarAulaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar_aula);
 
-        requestQueue = Volley.newRequestQueue(this);
+        requestQueue = Singleton.getInstance(this.getApplicationContext()).getRequestQueue();
 
         buttonAdicionar = findViewById(R.id.buttonAdicionarAula);
         editMateria = findViewById(R.id.editMateria);
@@ -89,6 +89,6 @@ public class AdicionarAulaActivity extends AppCompatActivity {
             }
         };
 
-        requestQueue.add(stringRequest);
+        Singleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 }
