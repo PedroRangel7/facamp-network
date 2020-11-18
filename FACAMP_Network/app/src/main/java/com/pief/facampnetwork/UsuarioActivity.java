@@ -99,6 +99,6 @@ public class UsuarioActivity extends AppCompatActivity {
             }
         };
 
-        requestQueue.add(stringRequest);
+        Singleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 }

@@ -28,6 +28,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.pief.facampnetwork.AdicionarCaronaActivity;
 import com.pief.facampnetwork.R;
 import com.pief.facampnetwork.RidesRecyclerAdapter;
+import com.pief.facampnetwork.Singleton;
 
 import org.json.JSONObject;
 
@@ -123,6 +124,6 @@ public class RidesFragment extends Fragment {
             }
         };
 
-        requestQueue.add(stringRequest);
+        Singleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 }

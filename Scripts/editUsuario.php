@@ -14,23 +14,25 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         die("Conexão falhou.");
     }
 
-    $nome = "'".$_POST['nome']."'";
-    $preco = "'".$_POST['preco']."'";
-    $descricao = "'".$_POST['descricao']."'";
-    $imagem = $_POST['imagem'];
-    $idUsuario = "'".$_POST['idUsuario']."'";
+    $id = $_POST['id'];
+    $campo = $_POST['campo'];
+    $valor = $_POST['valor'];
 
-    $imagem = "'".base64_encode($imagem)."'";
-    $preco = str_replace(",", ".", $preco);
+    if($campo == "foto"){
+        $valor = "'".base64_encode($valor)."'";
+    }
+    else{
+        $valor = "'".$valor."'";
+    }
 
-    $sql = "INSERT INTO produto (nome, preco, descricao, imagem, idUsuario) VALUES ($nome, $preco, $descricao, $imagem, $idUsuario)";
+    $sql = "UPDATE usuario SET $campo = $valor WHERE usuario.id = $id";
 
     if ($conn->query($sql) === TRUE) {
         $response["erro"] = false;
-        $response["mensagem"] = "Produto adicionado com sucesso.";
+        $response["mensagem"] = "Campo modificado com sucesso.";
     }
     else {
-        $response["mensagem"] = "O produto não pôde ser adicionado. Tente novamente.";
+        $response["mensagem"] = "Não foi possível alterar o campo. Tente novamente.";
     }
 
     $conn->close();

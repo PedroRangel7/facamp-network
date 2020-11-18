@@ -28,6 +28,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.pief.facampnetwork.AdicionarProdutoActivity;
 import com.pief.facampnetwork.R;
 import com.pief.facampnetwork.MarketRecyclerAdapter;
+import com.pief.facampnetwork.Singleton;
 
 import org.json.JSONObject;
 
@@ -123,6 +124,6 @@ public class MarketFragment extends Fragment {
             }
         };
 
-        requestQueue.add(stringRequest);
+        Singleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 }
