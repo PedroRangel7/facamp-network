@@ -85,7 +85,6 @@ public class ClassesFragment extends Fragment {
                 try{
                     JSONObject jsonObject = new JSONObject(response);
                     boolean erro = jsonObject.getBoolean("erro");
-                    Toast.makeText(getActivity().getApplicationContext(), jsonObject.getString("mensagem"), Toast.LENGTH_SHORT).show();
                     if(!erro){
                         recyclerView = (RecyclerView)view.findViewById(R.id.classes_recyclerView);
                         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -103,6 +102,9 @@ public class ClassesFragment extends Fragment {
                         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity().getApplicationContext(), DividerItemDecoration.VERTICAL);
                         dividerItemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.horizontal_divider));
                         recyclerView.addItemDecoration(dividerItemDecoration);
+                    }
+                    else{
+                        Toast.makeText(getActivity().getApplicationContext(), jsonObject.getString("mensagem"), Toast.LENGTH_SHORT).show();
                     }
                 }catch(Exception e){
                     Log.e("Classes", e.getMessage());

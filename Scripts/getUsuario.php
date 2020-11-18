@@ -34,7 +34,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $response["biografia"] = $registro['biografia'];
         $response["tipo"] = $registro['tipo'];
         $response["tipoString"] = $tipoUsuario['tipo'];
-        $response["foto"] = base64_encode($registro['foto']);
+        $response["foto"] = base64_decode($registro['foto']);
     }
     else{
         $response["mensagem"] = "Usuário não encontrado.";

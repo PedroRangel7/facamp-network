@@ -114,8 +114,8 @@ public class AdicionarProdutoActivity extends AppCompatActivity {
                 params.put("nome", editNome.getText().toString());
                 params.put("preco", editPreco.getText().toString());
                 params.put("descricao", editDescricao.getText().toString());
-                params.put("idUsuario", String.valueOf(MainActivity.getIDSessao()));
                 params.put("imagem", Utilities.bitmapToString(bitmap));
+                params.put("idUsuario", String.valueOf(MainActivity.getIDSessao()));
                 return params;
             }
         };

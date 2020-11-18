@@ -18,9 +18,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $login = "'".$_POST['login']."'";
     $senha = "'".$_POST['senha']."'";
     $telefone = "'".$_POST['telefone']."'";
+    $fotoRecebida = $_POST['foto'];
     $biografia = "'".$_POST['biografia']."'";
 
-    $sql = "INSERT INTO usuario (nome, login, senha, telefone, biografia) VALUES ($nome, $login, $senha, $telefone, $biografia)";
+    $fotoBuffer = "'".base64_encode($fotoRecebida)."'";
+
+    $sql = "INSERT INTO usuario (nome, login, senha, telefone, foto, biografia) VALUES ($nome, $login, $senha, $telefone, $fotoBuffer, $biografia)";
 
     if ($conn->query($sql) === TRUE) {
         $response["erro"] = false;

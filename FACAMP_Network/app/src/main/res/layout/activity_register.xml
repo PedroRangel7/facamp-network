@@ -7,11 +7,33 @@
     android:background="@color/grey_27"
     tools:context=".RegisterActivity">
 
+    <ImageView
+        android:id="@+id/imageViewFoto"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="30dp"
+        android:contentDescription="@string/description_profile_picture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
+
+    <TextView
+        android:id="@+id/textUploadFotoPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/upload_picture"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewFoto"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewFoto"
+        app:layout_constraintStart_toStartOf="@+id/imageViewFoto" />
+
     <Button
         android:id="@+id/buttonRegistrar"
         android:layout_width="240dp"
         android:layout_height="72dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="40dp"
         android:text="@string/register"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +63,7 @@
         android:id="@+id/editNomeRegister"
         android:layout_width="240dp"
         android:layout_height="40dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="40dp"
         android:background="@color/dark_blue"
         android:ems="10"
         android:hint="@string/name"
@@ -54,7 +76,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFoto" />
 
     <EditText
         android:id="@+id/editSenhaRegister"
