@@ -46,16 +46,16 @@ import java.util.Map;
 
 public class ProfileFragment extends Fragment {
 
-    StringRequest stringRequest;
-    RequestQueue requestQueue;
+    private StringRequest stringRequest;
+    private RequestQueue requestQueue;
 
-    String getUsuarioURL = "http://192.168.0.79/scripts/getUsuario.php";
+    private String getUsuarioURL = "http://192.168.0.79/scripts/getUsuario.php";
 
-    int id;
-    Bitmap bitmap;
-    ImageView foto;
-    EditText nomeSobrenome, telefone, biografia;
-    TextView tipoUsuario;
+    private int id;
+    private Bitmap bitmap;
+    private ImageView foto;
+    private EditText nomeSobrenome, telefone, biografia;
+    private TextView tipoUsuario;
 
     private ProfileViewModel profileViewModel;
 

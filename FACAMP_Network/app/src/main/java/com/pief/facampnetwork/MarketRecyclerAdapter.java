@@ -72,6 +72,7 @@ public class MarketRecyclerAdapter extends RecyclerView.Adapter<MarketRecyclerAd
                     final Intent telaProduto;
                     telaProduto = new Intent(context, ProdutoActivity.class);
                     try {
+                        telaProduto.putExtra("ID", clickedProduto.getInt("id"));
                         telaProduto.putExtra("NOME", clickedProduto.getString("nome"));
                         telaProduto.putExtra("PRECO", clickedProduto.getDouble("preco"));
                         telaProduto.putExtra("DESCRICAO", clickedProduto.getString("descricao"));

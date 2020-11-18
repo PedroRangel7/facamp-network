@@ -20,11 +20,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $valor = $_POST['valor'];
 
     if($campo == "imagem" || $campo == "foto"){
-        $valor = "'".base64_encode($valor)."'";
+        $valor = base64_encode($valor);
     }
-    else{
-        $valor = "'".$valor."'";
+    else if ($campo == "preco"){
+        $valor = str_replace(",", ".", $valor);
+        $valor = preg_replace("/[^0-9.]/", "", $valor);
     }
+    $valor = "'".$valor."'";
 
     $sql = "UPDATE $tabela SET $campo = $valor WHERE $tabela.id = $id";
 

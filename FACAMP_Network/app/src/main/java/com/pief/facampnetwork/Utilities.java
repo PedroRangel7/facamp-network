@@ -81,6 +81,15 @@ public class Utilities extends Application implements ActivityCompat.OnRequestPe
         precoString = precoString.replace(".", ",");
         return precoString;
     }
+    
+    public static void blockViewInputs(View[] views){
+        for(View view : views){
+            if(view instanceof EditText){
+                ((EditText) view).setCursorVisible(false);
+            }
+            view.setFocusable(false);
+        }
+    }
 
     public static void adicionarTextChangeListener(EditText editText, String tabela, String campo, int id, Activity activity){
         currentActivity = activity;

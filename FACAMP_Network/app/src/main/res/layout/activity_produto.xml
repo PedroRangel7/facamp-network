@@ -22,11 +22,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_camera" />
 
-    <TextView
+    <EditText
         android:id="@+id/textNomeProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:backgroundTint="#00FFFFFF"
         android:text="@string/name"
         android:textColor="@color/white"
         android:textSize="30sp"
@@ -34,11 +35,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fotoPaginaProduto" />
 
-    <TextView
+    <EditText
         android:id="@+id/textDescricaoProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:backgroundTint="#00FFFFFF"
         android:maxEms="10"
         android:maxLength="85"
         android:text="@string/description"
@@ -48,11 +50,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textNomeProduto" />
 
-    <TextView
+    <EditText
         android:id="@+id/textPrecoProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:backgroundTint="#00FFFFFF"
         android:text="@string/price"
         android:textColor="@color/green"
         android:textSize="30sp"
