@@ -3,15 +3,8 @@ package com.pief.facampnetwork;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,16 +59,12 @@ public class UsuarioActivity extends AppCompatActivity {
                 try{
                     JSONObject jsonObject = new JSONObject(response);
                     boolean erro = jsonObject.getBoolean("erro");
-                    Toast.makeText(getApplicationContext(), jsonObject.getString("mensagem"), Toast.LENGTH_SHORT).show();
                     if(!erro){
                         nomeSobrenome.setText(jsonObject.getString("nome"));
                         tipoUsuario.setText(jsonObject.getString("tipoString"));
                         telefone.setText(jsonObject.getString("telefone"));
                         biografia.setText("\"" + jsonObject.getString("biografia") + "\"");
-
-                        byte[] decodedImageString = Base64.decode(jsonObject.getString("foto"), Base64.DEFAULT);
-                        Bitmap fotoBitmap = BitmapFactory.decodeByteArray(decodedImageString, 0, decodedImageString.length);
-                        foto.setImageBitmap(fotoBitmap);
+                        foto.setImageBitmap(Utilities.getBitmap(jsonObject.getString("foto")));
 
                         switch(jsonObject.getInt("tipo")){
                             case 1:
@@ -88,6 +77,9 @@ public class UsuarioActivity extends AppCompatActivity {
                                 tipoUsuario.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                                 break;
                         }
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), jsonObject.getString("mensagem"), Toast.LENGTH_SHORT).show();
                     }
                 }catch(Exception e){
                     Log.v("User", e.getMessage());

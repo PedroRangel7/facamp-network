@@ -23,7 +23,6 @@ public class CaronaActivity extends AppCompatActivity {
         String saida = getIntent().getStringExtra("SAIDA");
         String destino = getIntent().getStringExtra("DESTINO");
         String data = getIntent().getStringExtra("DATA");
-        double preco = getIntent().getDoubleExtra("PRECO", 0);
         String placa = getIntent().getStringExtra("PLACA");
         idUsuario = getIntent().getIntExtra("ID_USUARIO", -1);
 
@@ -33,13 +32,10 @@ public class CaronaActivity extends AppCompatActivity {
         TextView precoCarona = findViewById(R.id.textPrecoCarona);
         TextView placaCarona = findViewById(R.id.textPlaca);
 
-        String precoString = "R$" + String.format("%.2f", preco);
-        precoString = precoString.replace(".", ",");
-
         saidaCarona.setText(saida);
         destinoCarona.setText(destino);
         dataCarona.setText(data);
-        precoCarona.setText(precoString);
+        precoCarona.setText(Utilities.formatPrice(getIntent().getDoubleExtra("PRECO", 0)));
         placaCarona.setText(placa);
 
         buttonPaginaMotorista.setOnClickListener(new View.OnClickListener(){

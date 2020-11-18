@@ -11,8 +11,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,11 +23,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -115,12 +111,11 @@ public class AdicionarProdutoActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<>();
-                String imagem = imagemToString(bitmap);
                 params.put("nome", editNome.getText().toString());
                 params.put("preco", editPreco.getText().toString());
                 params.put("descricao", editDescricao.getText().toString());
                 params.put("idUsuario", String.valueOf(MainActivity.getIDSessao()));
-                params.put("imagem", imagem);
+                params.put("imagem", Utilities.bitmapToString(bitmap));
                 return params;
             }
         };
@@ -132,14 +127,6 @@ public class AdicionarProdutoActivity extends AppCompatActivity {
         Intent escolherImg = new Intent(Intent.ACTION_PICK);
         escolherImg.setType("image/*");
         startActivityForResult(escolherImg, IMAGE_PICK_CODE);
-    }
-
-    private String imagemToString(Bitmap btmp){
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        btmp.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-        byte[] imagemBytes = byteArrayOutputStream.toByteArray();
-        String imagemString = Base64.encodeToString(imagemBytes, Base64.DEFAULT);
-        return imagemString;
     }
 
     @Override

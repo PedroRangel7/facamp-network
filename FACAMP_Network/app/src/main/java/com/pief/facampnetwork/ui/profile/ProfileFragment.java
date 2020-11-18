@@ -30,6 +30,7 @@ import com.android.volley.toolbox.Volley;
 import com.pief.facampnetwork.MainActivity;
 import com.pief.facampnetwork.R;
 import com.pief.facampnetwork.RidesRecyclerAdapter;
+import com.pief.facampnetwork.Utilities;
 
 import org.json.JSONObject;
 
@@ -84,10 +85,7 @@ public class ProfileFragment extends Fragment {
                         tipoUsuario.setText(jsonObject.getString("tipoString"));
                         telefone.setText(jsonObject.getString("telefone"));
                         biografia.setText("\"" + jsonObject.getString("biografia") + "\"");
-
-                        byte[] decodedImageString = Base64.decode(jsonObject.getString("foto"), Base64.DEFAULT);
-                        Bitmap fotoBitmap = BitmapFactory.decodeByteArray(decodedImageString, 0, decodedImageString.length);
-                        foto.setImageBitmap(fotoBitmap);
+                        foto.setImageBitmap(Utilities.getBitmap(jsonObject.getString("foto")));
 
                         switch(MainActivity.getTipoSessao()){
                             case 1:

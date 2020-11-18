@@ -2,8 +2,6 @@ package com.pief.facampnetwork;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,13 +44,9 @@ public class MarketRecyclerAdapter extends RecyclerView.Adapter<MarketRecyclerAd
         JSONObject produto = produtos.get(position);
         try {
             holder.nome.setText(produto.getString("nome"));
-            String precoString = "R$" + String.format("%.2f", produto.getDouble("preco"));
-            precoString = precoString.replace(".", ",");
-            holder.preco.setText(precoString);
+            holder.preco.setText(Utilities.formatPrice(produto.getDouble("preco")));
             holder.descricao.setText(produto.getString("descricao"));
-            byte[] decodedImageString = Base64.decode(produto.getString("imagem"), Base64.DEFAULT);
-            Bitmap imagem = BitmapFactory.decodeByteArray(decodedImageString, 0, decodedImageString.length);
-            holder.foto.setImageBitmap(imagem);
+            holder.foto.setImageBitmap(Utilities.getBitmap(produto.getString("imagem")));
         } catch (JSONException e) {
             e.printStackTrace();
         }
