@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FACAMPNetwork">
+        android:name=".Utilities"
         <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".CaronaActivity" />
         <activity android:name=".AulaActivity" />

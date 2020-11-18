@@ -14,18 +14,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         die("Conexão falhou.");
     }
 
+    $tabela = $_POST['tabela'];
     $id = $_POST['id'];
     $campo = $_POST['campo'];
     $valor = $_POST['valor'];
 
-    if($campo == "foto"){
+    if($campo == "imagem" || $campo == "foto"){
         $valor = "'".base64_encode($valor)."'";
     }
     else{
         $valor = "'".$valor."'";
     }
 
-    $sql = "UPDATE usuario SET $campo = $valor WHERE usuario.id = $id";
+    $sql = "UPDATE $tabela SET $campo = $valor WHERE $tabela.id = $id";
 
     if ($conn->query($sql) === TRUE) {
         $response["erro"] = false;

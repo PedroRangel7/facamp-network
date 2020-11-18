@@ -46,14 +46,10 @@ import java.util.Map;
 
 public class ProfileFragment extends Fragment {
 
-    private static final int IMAGE_PICK_CODE = 1000;
-    private static final int PERMISSION_CODE = 1001;
-
     StringRequest stringRequest;
     RequestQueue requestQueue;
 
     String getUsuarioURL = "http://192.168.0.79/scripts/getUsuario.php";
-    String editUsuarioURL = "http://192.168.0.79/scripts/editUsuario.php";
 
     int id;
     Bitmap bitmap;
@@ -137,106 +133,15 @@ public class ProfileFragment extends Fragment {
     }
 
     private void adicionarListeners(){
-        adicionarTextChangeListener(nomeSobrenome, "nome");
-        adicionarTextChangeListener(biografia, "biografia");
-        adicionarTextChangeListener(telefone, "telefone");
-
-        foto.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                    if(ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
-                        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
-                        requestPermissions(permissions, PERMISSION_CODE);
-                    }
-                    else
-                        escolherFoto();
-                }
-                else
-                    escolherFoto();
-            }
-        });
-    }
-
-    private void adicionarTextChangeListener(EditText editText, String campo){
-        editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                criarStringRequest(campo, editText.getText().toString());
-            }
-        });
-    }
-
-    private void criarStringRequest(String campo, String valor){
-        stringRequest = new StringRequest(Request.Method.POST, editUsuarioURL, new Response.Listener<String>(){
-            @Override
-            public void onResponse(String response){
-                Log.i("Profile", response);
-                try{
-                    JSONObject jsonObject = new JSONObject(response);
-                    boolean erro = jsonObject.getBoolean("erro");
-                    if(erro){
-                        Toast.makeText(getActivity().getApplicationContext(), jsonObject.getString("mensagem"), Toast.LENGTH_SHORT).show();
-                    }
-                }catch(Exception e){
-                    Log.e("Profile", e.getMessage());
-                }
-            }
-        }, new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error){
-                Log.e("Profile", error.getMessage());
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams(){
-                Map<String, String> params = new HashMap<>();
-                params.put("id", String.valueOf(id));
-                params.put("campo", campo);
-                params.put("valor", valor);
-                return params;
-            }
-        };
-
-        Singleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
-    }
-
-    private void escolherFoto(){
-        Intent escolherImg = new Intent(Intent.ACTION_PICK);
-        escolherImg.setType("image/*");
-        startActivityForResult(escolherImg, IMAGE_PICK_CODE);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode == PERMISSION_CODE){
-            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                escolherFoto();
-            }
-        }
+        Utilities.adicionarTextChangeListener(nomeSobrenome, "usuario", "nome", id, getActivity());
+        Utilities.adicionarTextChangeListener(biografia, "usuario", "biografia", id, getActivity());
+        Utilities.adicionarTextChangeListener(telefone, "usuario", "telefone", id, getActivity());
+        Utilities.adicionarImageViewChangeListener(foto, getActivity(), this);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == getActivity().RESULT_OK && requestCode == IMAGE_PICK_CODE) {
-            try {
-                InputStream inputStream = getActivity().getContentResolver().openInputStream(data.getData());
-                bitmap = BitmapFactory.decodeStream(inputStream);
-                foto.setImageBitmap(bitmap);
-                criarStringRequest("foto", Utilities.bitmapToString(bitmap));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        Utilities.onActivityResultImageChange(requestCode, resultCode, data, foto, "usuario", "foto", id);
     }
 }
