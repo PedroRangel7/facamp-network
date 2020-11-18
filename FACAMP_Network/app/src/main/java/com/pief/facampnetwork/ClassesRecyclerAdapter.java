@@ -69,6 +69,7 @@ public class ClassesRecyclerAdapter extends RecyclerView.Adapter<ClassesRecycler
                     final Intent telaAula;
                     telaAula = new Intent(context, AulaActivity.class);
                     try {
+                        telaAula.putExtra("ID", clickedAula.getInt("id"));
                         telaAula.putExtra("MATERIA", clickedAula.getString("materia"));
                         telaAula.putExtra("DESCRICAO", clickedAula.getString("descricao"));
                         telaAula.putExtra("DATA", clickedAula.getString("dataAula"));

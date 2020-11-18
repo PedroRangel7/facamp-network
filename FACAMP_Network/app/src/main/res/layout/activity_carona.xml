@@ -7,12 +7,13 @@
     android:background="@color/grey_38"
     tools:context=".CaronaActivity">
 
-    <TextView
+    <EditText
         android:id="@+id/textValorSaida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:layout_marginTop="60dp"
+        android:backgroundTint="#00FFFFFF"
         android:text="@string/from"
         android:textColor="@color/white"
         android:textSize="30sp"
@@ -27,6 +28,7 @@
         android:text="@string/from_colon"
         android:textColor="@color/blue"
         android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textValorSaida"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textValorSaida" />
 
@@ -38,15 +40,17 @@
         android:text="@string/to_colon"
         android:textColor="@color/blue"
         android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textValorDestino"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textValorDestino" />
 
-    <TextView
+    <EditText
         android:id="@+id/textValorDestino"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:layout_marginTop="8dp"
+        android:backgroundTint="#00FFFFFF"
         android:maxEms="10"
         android:maxLength="85"
         android:text="@string/to"
@@ -55,11 +59,12 @@
         app:layout_constraintStart_toEndOf="@+id/textDestino"
         app:layout_constraintTop_toBottomOf="@+id/textValorSaida" />
 
-    <TextView
+    <EditText
         android:id="@+id/textPlaca"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:backgroundTint="#00FFFFFF"
         android:maxEms="10"
         android:maxLength="85"
         android:text="@string/sign"
@@ -69,11 +74,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textPrecoCarona" />
 
-    <TextView
+    <EditText
         android:id="@+id/textDataCarona"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:backgroundTint="#00FFFFFF"
         android:maxEms="10"
         android:maxLength="85"
         android:text="@string/date"
@@ -83,11 +89,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textValorDestino" />
 
-    <TextView
+    <EditText
         android:id="@+id/textPrecoCarona"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:backgroundTint="#00FFFFFF"
         android:text="@string/price"
         android:textColor="@color/green"
         android:textSize="30sp"

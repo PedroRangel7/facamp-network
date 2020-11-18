@@ -69,6 +69,7 @@ public class RidesRecyclerAdapter extends RecyclerView.Adapter<RidesRecyclerAdap
                     final Intent telaCarona;
                     telaCarona = new Intent(context, CaronaActivity.class);
                     try {
+                        telaCarona.putExtra("ID", clickedCarona.getInt("id"));
                         telaCarona.putExtra("SAIDA", clickedCarona.getString("saida"));
                         telaCarona.putExtra("DESTINO", clickedCarona.getString("destino"));
                         telaCarona.putExtra("DATA", clickedCarona.getString("dataCarona"));

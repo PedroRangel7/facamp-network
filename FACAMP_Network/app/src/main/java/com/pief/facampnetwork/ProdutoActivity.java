@@ -15,8 +15,8 @@ public class ProdutoActivity extends AppCompatActivity {
     private boolean isOwner = false;
     private int id;
     private int idUsuario;
-    private Button buttonPaginaVendedor;
 
+    private Button buttonPaginaVendedor;
     private EditText nomeProduto, precoProduto, descricaoProduto;
     private ImageView fotoProduto;
 
@@ -45,15 +45,6 @@ public class ProdutoActivity extends AppCompatActivity {
         if(idUsuario == MainActivity.getIDSessao())
             isOwner = true;
 
-        buttonPaginaVendedor.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent telaUsuario = new Intent(getApplicationContext(), UsuarioActivity.class);
-                telaUsuario.putExtra("ID_USUARIO", idUsuario);
-                startActivity(telaUsuario);
-            }
-        });
-
         if(isOwner){
             adicionarListeners();
             buttonPaginaVendedor.setVisibility(View.GONE);
@@ -61,6 +52,15 @@ public class ProdutoActivity extends AppCompatActivity {
         else{
             View[] views = {nomeProduto, precoProduto, descricaoProduto, fotoProduto};
             Utilities.blockViewInputs(views);
+
+            buttonPaginaVendedor.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+                    Intent telaUsuario = new Intent(getApplicationContext(), UsuarioActivity.class);
+                    telaUsuario.putExtra("ID_USUARIO", idUsuario);
+                    startActivity(telaUsuario);
+                }
+            });
         }
     }
 
