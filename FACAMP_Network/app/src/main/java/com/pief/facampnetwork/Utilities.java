@@ -97,6 +97,18 @@ public class Utilities extends Application implements ActivityCompat.OnRequestPe
         }
     }
 
+    public static boolean checarCamposAleatorios(EditText[] editTexts){
+        boolean validado = true;
+        for(EditText editText : editTexts){
+            if(editText.getText().length() == 0){
+                editText.setError("Campo obrigatório.");
+                editText.requestFocus();
+                validado = false;
+            }
+        }
+        return validado;
+    }
+
     public static void showConfirmacaoDelete(String tabela, int id, Activity activity){
         currentActivity = activity;
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);

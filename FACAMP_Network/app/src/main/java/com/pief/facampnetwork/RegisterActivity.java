@@ -68,26 +68,8 @@ public class RegisterActivity extends AppCompatActivity {
         buttonRegistrar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                boolean validado = true;
-
-                if(editNome.getText().length() == 0){
-                    editNome.setError("Campo obrigatório.");
-                    editNome.requestFocus();
-                    validado = false;
-                }
-
-                if(editSenha.getText().length() == 0){
-                    editSenha.setError("Campo obrigatório.");
-                    editSenha.requestFocus();
-                    validado = false;
-                }
-
-                if(editLogin.getText().length() == 0){
-                    editLogin.setError("Campo obrigatório.");
-                    editLogin.requestFocus();
-                    validado = false;
-                }
-
+                EditText[] camposObrigatorios = {editSenha, editLogin, editNome};
+                boolean validado = Utilities.checarCamposAleatorios(camposObrigatorios);
                 if(validado){
                     buttonRegistrar.setEnabled(false);
                     registrarUsuario();

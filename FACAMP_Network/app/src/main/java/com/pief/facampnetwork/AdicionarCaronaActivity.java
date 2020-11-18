@@ -49,8 +49,12 @@ public class AdicionarCaronaActivity extends AppCompatActivity {
         buttonAdicionar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                buttonAdicionar.setEnabled(false);
-                adicionarCarona();
+                EditText[] camposObrigatorios = {editData, editPlaca, editPreco, editDestino, editSaida};
+                boolean validado = Utilities.checarCamposAleatorios(camposObrigatorios);
+                if(validado){
+                    buttonAdicionar.setEnabled(false);
+                    adicionarCarona();
+                }
             }
         });
     }

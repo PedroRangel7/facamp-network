@@ -20,19 +20,6 @@
         app:layout_constraintTop_toBottomOf="@id/textPrecoAula" />
 
     <EditText
-        android:id="@+id/textPrecoAula"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="#00FFFFFF"
-        android:text="@string/price"
-        android:textColor="@color/green"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textDataAula" />
-
-    <EditText
         android:id="@+id/textMateria"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,6 +57,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textDescricaoAula" />
+
+    <EditText
+        android:id="@+id/textPrecoAula"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#00FFFFFF"
+        android:text="@string/price"
+        android:textColor="@color/green"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDataAula" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/buttonDeleteAula"
