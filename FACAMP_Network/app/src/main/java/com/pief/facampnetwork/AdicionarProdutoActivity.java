@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -58,6 +59,8 @@ public class AdicionarProdutoActivity extends AppCompatActivity {
         editNome = findViewById(R.id.editNomeProduto);
         editPreco = findViewById(R.id.editPrecoProduto);
         editDescricao = findViewById(R.id.editDescricaoProduto);
+
+        bitmap = ((BitmapDrawable)imagem.getDrawable()).getBitmap();
 
         buttonAdicionar.setOnClickListener(new View.OnClickListener(){
             @Override

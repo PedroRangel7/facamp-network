@@ -5,6 +5,7 @@ import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONObject;
 
@@ -38,6 +40,8 @@ public class UsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
+        FloatingActionButton buttonDeletar = findViewById(R.id.buttonDeleteUser);
+
         requestQueue = Volley.newRequestQueue(this);
 
         foto = findViewById(R.id.fotoUser);
@@ -49,6 +53,16 @@ public class UsuarioActivity extends AppCompatActivity {
         idUsuario = getIntent().getIntExtra("ID_USUARIO", -1);
 
         preencherPerfil();
+
+        if(MainActivity.getTipoSessao() == 1){
+            buttonDeletar.setVisibility(View.VISIBLE);
+            buttonDeletar.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+                    Utilities.showConfirmacaoDelete("usuario", idUsuario, UsuarioActivity.this);
+                }
+            });
+        }
     }
 
     private void preencherPerfil(){

@@ -10,13 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class AulaActivity extends AppCompatActivity {
 
     private boolean isOwner = false;
     private int id;
     private int idUsuario;
 
-    private Button buttonPaginaTutor;
     private EditText materiaAula, descricaoAula, dataAula, precoAula;
 
     @Override
@@ -24,7 +25,8 @@ public class AulaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aula);
 
-        buttonPaginaTutor = findViewById(R.id.buttonPaginaTutor);
+        Button buttonPaginaTutor = findViewById(R.id.buttonPaginaTutor);
+        FloatingActionButton buttonDeletar = findViewById(R.id.buttonDeleteAula);
 
         id = getIntent().getIntExtra("ID", -1);
         String materia = getIntent().getStringExtra("MATERIA");
@@ -56,9 +58,20 @@ public class AulaActivity extends AppCompatActivity {
             buttonPaginaTutor.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view){
+                    buttonPaginaTutor.setEnabled(false);
                     Intent telaUsuario = new Intent(getApplicationContext(), UsuarioActivity.class);
                     telaUsuario.putExtra("ID_USUARIO", idUsuario);
                     startActivity(telaUsuario);
+                }
+            });
+        }
+
+        if(MainActivity.getTipoSessao() <= 2 || isOwner){
+            buttonDeletar.setVisibility(View.VISIBLE);
+            buttonDeletar.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+                    Utilities.showConfirmacaoDelete("aula", id, AulaActivity.this);
                 }
             });
         }

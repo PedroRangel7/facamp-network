@@ -10,13 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class CaronaActivity extends AppCompatActivity {
 
     private boolean isOwner = false;
     private int id;
     private int idUsuario;
 
-    private Button buttonPaginaMotorista;
     private EditText saidaCarona, destinoCarona, dataCarona, precoCarona, placaCarona;
 
     @Override
@@ -24,7 +25,8 @@ public class CaronaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carona);
 
-        buttonPaginaMotorista = findViewById(R.id.buttonPaginaMotorista);
+        Button buttonPaginaMotorista = findViewById(R.id.buttonPaginaMotorista);
+        FloatingActionButton buttonDeletar = findViewById(R.id.buttonDeleteCarona);
 
         id = getIntent().getIntExtra("ID", -1);
         String saida = getIntent().getStringExtra("SAIDA");
@@ -59,9 +61,20 @@ public class CaronaActivity extends AppCompatActivity {
             buttonPaginaMotorista.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view){
+                    buttonPaginaMotorista.setEnabled(false);
                     Intent telaUsuario = new Intent(getApplicationContext(), UsuarioActivity.class);
                     telaUsuario.putExtra("ID_USUARIO", idUsuario);
                     startActivity(telaUsuario);
+                }
+            });
+        }
+
+        if(MainActivity.getTipoSessao() <= 2 || isOwner){
+            buttonDeletar.setVisibility(View.VISIBLE);
+            buttonDeletar.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+                    Utilities.showConfirmacaoDelete("carona", id, CaronaActivity.this);
                 }
             });
         }

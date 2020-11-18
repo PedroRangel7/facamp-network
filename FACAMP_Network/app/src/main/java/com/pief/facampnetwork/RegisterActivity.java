@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -62,6 +63,8 @@ public class RegisterActivity extends AppCompatActivity {
         editTelefone = findViewById(R.id.editTelefoneRegister);
         editBiografia = findViewById(R.id.editBiografiaRegister);
 
+        bitmap = ((BitmapDrawable)foto.getDrawable()).getBitmap();
+
         buttonRegistrar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -86,6 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
                 if(validado){
+                    buttonRegistrar.setEnabled(false);
                     registrarUsuario();
                 }
             }

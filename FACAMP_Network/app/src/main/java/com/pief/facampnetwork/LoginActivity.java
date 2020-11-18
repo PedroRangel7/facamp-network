@@ -71,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         buttonCriarConta.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                buttonCriarConta.setEnabled(false);
                 Intent telaRegistro = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(telaRegistro);
                 finish();
@@ -88,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                     boolean erro = jsonObject.getBoolean("erro");
                     Toast.makeText(getApplicationContext(), jsonObject.getString("mensagem"), Toast.LENGTH_SHORT).show();
                     if(!erro){
+                        buttonEntrar.setEnabled(false);
                         int tipoUsuario = jsonObject.getInt("tipo");
                         Intent telaPrincipal = new Intent(LoginActivity.this, MainActivity.class);
                         telaPrincipal.putExtra("ID_SESSAO", jsonObject.getInt("id"));

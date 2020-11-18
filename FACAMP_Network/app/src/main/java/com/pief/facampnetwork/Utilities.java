@@ -3,12 +3,15 @@ package com.pief.facampnetwork;
 import android.Manifest;
 import android.app.Activity;
 import android.app.Application;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Base64;
@@ -20,7 +23,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
@@ -44,6 +49,7 @@ public class Utilities extends Application implements ActivityCompat.OnRequestPe
     private static Fragment currentFragment;
     private static boolean usingFragment = false;
     private static String editItemURL = "http://192.168.0.79/scripts/editItem.php";
+    private static String deleteItemURL = "http://192.168.0.79/scripts/deleteItem.php";
 
     private static Application instance;
 
@@ -89,6 +95,56 @@ public class Utilities extends Application implements ActivityCompat.OnRequestPe
             }
             view.setFocusable(false);
         }
+    }
+
+    public static void showConfirmacaoDelete(String tabela, int id, Activity activity){
+        currentActivity = activity;
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setMessage("Deletar " + tabela + "?");
+        builder.setTitle("Confirmação de exclusão de " + tabela);
+        builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int option) {
+                criarDeleteStringRequest(tabela, id);
+                Intent telaPrincipal = new Intent(activity.getApplicationContext(), MainActivity.class);
+                activity.startActivity(telaPrincipal);
+            }
+        });
+        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int option) {
+            }
+        });
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.show();
+    }
+
+    public static void criarDeleteStringRequest(String tabela, int id){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, deleteItemURL, new Response.Listener<String>(){
+            @Override
+            public void onResponse(String response){
+                Log.i("Delete", response);
+                try{
+                    JSONObject jsonObject = new JSONObject(response);
+                    Toast.makeText(currentActivity, jsonObject.getString("mensagem"), Toast.LENGTH_SHORT).show();
+                }catch(Exception e){
+                    Log.e("Delete", e.getMessage());
+                }
+            }
+        }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error){
+                Log.e("Delete", error.getMessage());
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams(){
+                Map<String, String> params = new HashMap<>();
+                params.put("id", String.valueOf(id));
+                params.put("tabela", tabela);
+                return params;
+            }
+        };
+
+        Singleton.getInstance(currentActivity).addToRequestQueue(stringRequest);
     }
 
     public static void adicionarTextChangeListener(EditText editText, String tabela, String campo, int id, Activity activity){
@@ -155,21 +211,21 @@ public class Utilities extends Application implements ActivityCompat.OnRequestPe
         StringRequest stringRequest = new StringRequest(Request.Method.POST, editItemURL, new Response.Listener<String>(){
             @Override
             public void onResponse(String response){
-                Log.i("Profile", response);
+                Log.i("Edit", response);
                 try{
                     JSONObject jsonObject = new JSONObject(response);
                     boolean erro = jsonObject.getBoolean("erro");
                     if(erro){
-                        Toast.makeText(Utilities.getContext(), jsonObject.getString("mensagem"), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(currentActivity, jsonObject.getString("mensagem"), Toast.LENGTH_SHORT).show();
                     }
                 }catch(Exception e){
-                    Log.e("Profile", e.getMessage());
+                    Log.e("Edit", e.getMessage());
                 }
             }
         }, new Response.ErrorListener(){
             @Override
             public void onErrorResponse(VolleyError error){
-                Log.e("Profile", error.getMessage());
+                Log.e("Edit", error.getMessage());
             }
         }) {
             @Override

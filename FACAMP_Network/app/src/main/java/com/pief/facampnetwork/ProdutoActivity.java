@@ -3,6 +3,7 @@ package com.pief.facampnetwork;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,13 +11,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class ProdutoActivity extends AppCompatActivity {
 
     private boolean isOwner = false;
     private int id;
     private int idUsuario;
 
-    private Button buttonPaginaVendedor;
     private EditText nomeProduto, precoProduto, descricaoProduto;
     private ImageView fotoProduto;
 
@@ -25,7 +27,8 @@ public class ProdutoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_produto);
 
-        buttonPaginaVendedor = findViewById(R.id.buttonPaginaVendedor);
+        Button buttonPaginaVendedor = findViewById(R.id.buttonPaginaVendedor);
+        FloatingActionButton buttonDeletar = findViewById(R.id.buttonDeleteProduto);
 
         id = getIntent().getIntExtra("ID", -1);
         String nome = getIntent().getStringExtra("NOME");
@@ -56,9 +59,20 @@ public class ProdutoActivity extends AppCompatActivity {
             buttonPaginaVendedor.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view){
+                    buttonPaginaVendedor.setEnabled(false);
                     Intent telaUsuario = new Intent(getApplicationContext(), UsuarioActivity.class);
                     telaUsuario.putExtra("ID_USUARIO", idUsuario);
                     startActivity(telaUsuario);
+                }
+            });
+        }
+
+        if(MainActivity.getTipoSessao() <= 2 || isOwner){
+            buttonDeletar.setVisibility(View.VISIBLE);
+            buttonDeletar.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+                    Utilities.showConfirmacaoDelete("produto", id, ProdutoActivity.this);
                 }
             });
         }

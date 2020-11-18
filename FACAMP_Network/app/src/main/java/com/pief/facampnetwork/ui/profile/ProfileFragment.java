@@ -32,6 +32,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.pief.facampnetwork.AulaActivity;
 import com.pief.facampnetwork.MainActivity;
 import com.pief.facampnetwork.R;
 import com.pief.facampnetwork.Singleton;
@@ -56,6 +58,7 @@ public class ProfileFragment extends Fragment {
     private ImageView foto;
     private EditText nomeSobrenome, telefone, biografia;
     private TextView tipoUsuario;
+    FloatingActionButton buttonDeletar;
 
     private ProfileViewModel profileViewModel;
 
@@ -76,6 +79,7 @@ public class ProfileFragment extends Fragment {
         tipoUsuario = root.findViewById(R.id.textTipoUsuario);
         telefone = root.findViewById(R.id.textTelefone);
         biografia = root.findViewById(R.id.textBiografia);
+        buttonDeletar = root.findViewById(R.id.buttonDeleteConta);
         requestQueue = Volley.newRequestQueue(getActivity());
         preencherPerfil(root);
         adicionarListeners();
@@ -137,6 +141,13 @@ public class ProfileFragment extends Fragment {
         Utilities.adicionarTextChangeListener(biografia, "usuario", "biografia", id, getActivity());
         Utilities.adicionarTextChangeListener(telefone, "usuario", "telefone", id, getActivity());
         Utilities.adicionarImageViewChangeListener(foto, getActivity(), this);
+
+        buttonDeletar.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Utilities.showConfirmacaoDelete("usuario", id, getActivity());
+            }
+        });
     }
 
     @Override
