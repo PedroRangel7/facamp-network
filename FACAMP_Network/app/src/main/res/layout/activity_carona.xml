@@ -7,6 +7,19 @@
     android:background="@color/background"
     tools:context=".CaronaActivity">
 
+    <TextView
+        android:id="@+id/textSaida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/gill_sans"
+        android:text="@string/from_colon"
+        android:textColor="@color/label_text"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textValorSaida"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textValorSaida" />
+
     <EditText
         android:id="@+id/textValorSaida"
         android:layout_width="wrap_content"
@@ -15,7 +28,7 @@
         android:layout_marginTop="60dp"
         android:backgroundTint="@color/text_line"
         android:fontFamily="@font/gill_sans"
-        android:inputType="textShortMessage"
+        android:inputType="textShortMessage|textNoSuggestions"
         android:text="@string/from"
         android:textColor="@color/text"
         android:textColorHint="@color/hint"
@@ -24,24 +37,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textSaida"
-        android:fontFamily="@font/gill_sans"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/from_colon"
-        android:textColor="@color/label_text"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textValorSaida"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textValorSaida" />
-
-    <TextView
         android:id="@+id/textDestino"
-        android:fontFamily="@font/gill_sans"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:fontFamily="@font/gill_sans"
         android:text="@string/to_colon"
         android:textColor="@color/label_text"
         android:textSize="24sp"
@@ -57,7 +57,7 @@
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/text_line"
         android:fontFamily="@font/gill_sans"
-        android:inputType="textShortMessage"
+        android:inputType="textShortMessage|textNoSuggestions"
         android:maxEms="10"
         android:maxLength="85"
         android:text="@string/to"
@@ -74,7 +74,7 @@
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/text_line"
         android:fontFamily="@font/gill_sans"
-        android:inputType="datetime"
+        android:inputType="textNoSuggestions|datetime"
         android:maxEms="10"
         android:maxLength="85"
         android:text="@string/date"
@@ -92,7 +92,7 @@
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/text_line"
         android:fontFamily="@font/gill_sans"
-        android:inputType="numberDecimal"
+        android:inputType="textNoSuggestions|numberDecimal"
         android:text="@string/price"
         android:textColor="@color/price_text"
         android:textColorHint="@color/hint"
@@ -108,7 +108,7 @@
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/text_line"
         android:fontFamily="@font/gill_sans"
-        android:inputType="textShortMessage"
+        android:inputType="textShortMessage|textNoSuggestions"
         android:maxEms="10"
         android:maxLength="85"
         android:text="@string/sign"

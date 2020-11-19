@@ -3,8 +3,10 @@ package com.pief.facampnetwork.ui.profile;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.VolumeShaper;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -37,6 +40,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.pief.facampnetwork.AulaActivity;
+import com.pief.facampnetwork.LoginActivity;
 import com.pief.facampnetwork.MainActivity;
 import com.pief.facampnetwork.R;
 import com.pief.facampnetwork.Singleton;
@@ -86,17 +90,8 @@ public class ProfileFragment extends Fragment {
         requestQueue = Volley.newRequestQueue(getActivity());
         preencherPerfil(root);
         adicionarListeners();
-
-        Switch sw = (Switch)root.findViewById(R.id.switchTemaEscuro);
-        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                }
-            }
-        });
+        configurarSwitch(root);
+        configurarLogout(root);
 
         return root;
     }
@@ -160,6 +155,37 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view){
                 Utilities.showConfirmacaoDelete("usuario", id, getActivity());
+            }
+        });
+    }
+
+    private void configurarSwitch(View view){
+        Switch sw = (Switch)view.findViewById(R.id.switchTemaEscuro);
+        int nightModeFlags = view.getContext().getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        if(nightModeFlags == Configuration.UI_MODE_NIGHT_YES){
+            sw.setChecked(true);
+        }
+        else{
+            sw.setChecked(false);
+        }
+        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+            }
+        });
+    }
+
+    private void configurarLogout(View view){
+        Button buttonSair = view.findViewById(R.id.buttonSair);
+        buttonSair.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent telaLogin = new Intent(getActivity(), LoginActivity.class);
+                startActivity(telaLogin);
             }
         });
     }
