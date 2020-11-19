@@ -3,8 +3,10 @@
     <color name="background">#FFFFFF</color>
     <color name="bottom_nav_bar">#005B90</color>
     <color name="button">#005B90</color>
-    <color name="text_background">#BCBCBC</color>
+    <color name="button_click">#77CDFF</color>
+    <color name="text_background">#FFFFFF</color>
     <color name="text">#000000</color>
+    <color name="text_line">#005B90</color>
     <color name="hint">#606060</color>
     <color name="price_text">#0A9000</color>
     <color name="label_text">#005B90</color>

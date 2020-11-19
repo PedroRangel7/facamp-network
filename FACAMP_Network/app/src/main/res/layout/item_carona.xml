@@ -8,6 +8,10 @@
 
     <TextView
         android:id="@+id/saida"
+        android:backgroundTint="@color/text_line"
+        android:fontFamily="@font/gill_sans"
+        android:textColorHint="@color/hint"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -15,24 +19,30 @@
         android:maxLines="1"
         android:text="@string/from_colon"
         android:textColor="@color/label_text"
-        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/valorSaida"
+        android:backgroundTint="@color/text_line"
+        android:fontFamily="@font/gill_sans"
+        android:textColorHint="@color/hint"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:maxLines="1"
         android:text="@string/value_from"
         android:textColor="@color/text"
-        android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/saida"
         app:layout_constraintTop_toTopOf="@+id/saida" />
 
     <TextView
         android:id="@+id/destino"
+        android:backgroundTint="@color/text_line"
+        android:fontFamily="@font/gill_sans"
+        android:textColorHint="@color/hint"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -40,24 +50,30 @@
         android:maxLines="1"
         android:text="@string/to_colon"
         android:textColor="@color/label_text"
-        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/saida" />
 
     <TextView
         android:id="@+id/valorDestino"
+        android:backgroundTint="@color/text_line"
+        android:fontFamily="@font/gill_sans"
+        android:textColorHint="@color/hint"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:maxLines="1"
         android:text="@string/value_to"
         android:textColor="@color/text"
-        android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/destino"
         app:layout_constraintTop_toTopOf="@+id/destino" />
 
     <TextView
         android:id="@+id/dataCarona"
+        android:backgroundTint="@color/text_line"
+        android:fontFamily="@font/gill_sans"
+        android:textColorHint="@color/hint"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -66,20 +82,22 @@
         android:maxLines="1"
         android:text="@string/date"
         android:textColor="@color/text"
-        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/destino" />
 
     <TextView
         android:id="@+id/precoCarona"
+        android:backgroundTint="@color/text_line"
+        android:fontFamily="@font/gill_sans"
+        android:textColorHint="@color/hint"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/price"
         android:textColor="@color/price_text"
-        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

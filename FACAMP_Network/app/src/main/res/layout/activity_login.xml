@@ -7,11 +7,65 @@
     android:background="@color/background"
     tools:context=".LoginActivity">
 
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:adjustViewBounds="true"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/Logo" />
+
+    <EditText
+        android:id="@+id/editLogin"
+        android:layout_width="240dp"
+        android:layout_height="45dp"
+        android:backgroundTint="@color/text_line"
+        android:fontFamily="@font/gill_sans"
+        android:textColor="@color/text"
+        android:textColorHint="@color/hint"
+        android:textSize="24sp"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:hint="@string/login"
+        android:importantForAutofill="no"
+        android:inputType="textShortMessage"
+        android:maxLength="20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
+
+    <EditText
+        android:id="@+id/editSenha"
+        android:layout_width="240dp"
+        android:layout_height="45dp"
+        android:backgroundTint="@color/text_line"
+        android:fontFamily="@font/gill_sans"
+        android:textColor="@color/text"
+        android:textColorHint="@color/hint"
+        android:textSize="24sp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="@string/password"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:maxLength="32"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editLogin" />
+
     <Button
         android:id="@+id/buttonEntrar"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
-        android:layout_height="72dp"
-        android:layout_marginTop="80dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/button_onclick_ripple"
+        android:fontFamily="@font/gill_sans"
         android:text="@string/enter"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,48 +74,16 @@
 
     <Button
         android:id="@+id/buttonCriarConta"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
-        android:layout_height="72dp"
-        android:layout_marginTop="100dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/button_onclick_ripple"
+        android:fontFamily="@font/gill_sans"
         android:text="@string/create_account"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonEntrar" />
 
-    <EditText
-        android:id="@+id/editLogin"
-        android:layout_width="240dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="180dp"
-        android:background="@color/text_background"
-        android:ems="10"
-        android:hint="@string/login"
-        android:importantForAutofill="no"
-        android:inputType="textShortMessage"
-        android:maxLength="20"
-        android:textColor="@color/text"
-        android:textColorHint="@color/hint"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editSenha"
-        android:layout_width="240dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="40dp"
-        android:background="@color/text_background"
-        android:ems="10"
-        android:hint="@string/password"
-        android:importantForAutofill="no"
-        android:inputType="textPassword"
-        android:maxLength="32"
-        android:textColor="@color/text"
-        android:textColorHint="@color/hint"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editLogin" />
 </androidx.constraintlayout.widget.ConstraintLayout>

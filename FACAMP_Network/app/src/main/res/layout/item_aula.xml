@@ -8,6 +8,10 @@
 
     <TextView
         android:id="@+id/materia"
+        android:backgroundTint="@color/text_line"
+        android:fontFamily="@font/gill_sans"
+        android:textColorHint="@color/hint"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -15,24 +19,30 @@
         android:maxLines="1"
         android:text="@string/subject_colon"
         android:textColor="@color/label_text"
-        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/valorMateria"
+        android:backgroundTint="@color/text_line"
+        android:fontFamily="@font/gill_sans"
+        android:textColorHint="@color/hint"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:maxLines="1"
         android:text="@string/value_subject"
         android:textColor="@color/text"
-        android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/materia"
         app:layout_constraintTop_toTopOf="@+id/materia" />
 
     <TextView
         android:id="@+id/descricaoAula"
+        android:backgroundTint="@color/text_line"
+        android:fontFamily="@font/gill_sans"
+        android:textColorHint="@color/hint"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -41,31 +51,36 @@
         android:maxLines="4"
         android:text="@string/description"
         android:textColor="@color/text"
-        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/materia"
         app:layout_constraintTop_toBottomOf="@+id/materia" />
 
     <TextView
         android:id="@+id/dataAula"
+        android:backgroundTint="@color/text_line"
+        android:fontFamily="@font/gill_sans"
+        android:textColorHint="@color/hint"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:maxLines="1"
         android:text="@string/date"
         android:textColor="@color/text"
-        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/materia"
         app:layout_constraintTop_toBottomOf="@+id/descricaoAula" />
 
     <TextView
         android:id="@+id/precoAula"
+        android:backgroundTint="@color/text_line"
+        android:fontFamily="@font/gill_sans"
+        android:textColorHint="@color/hint"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/price"
         android:textColor="@color/price_text"
-        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

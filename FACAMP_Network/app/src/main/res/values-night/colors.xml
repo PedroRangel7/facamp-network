@@ -5,6 +5,7 @@
     <color name="button">#005B90</color>
     <color name="text_background">#353535</color>
     <color name="text">#FFFFFF</color>
+    <color name="text_line">#005B90</color>
     <color name="hint">#FF9E9E9E</color>
     <color name="price_text">#0A9000</color>
     <color name="label_text">#005B90</color>

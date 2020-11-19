@@ -25,6 +25,10 @@
 
     <TextView
         android:id="@+id/nomeProduto"
+        android:backgroundTint="@color/text_line"
+        android:fontFamily="@font/gill_sans"
+        android:textColorHint="@color/hint"
+        android:textSize="24sp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -33,13 +37,16 @@
         android:maxLines="1"
         android:text="@string/name"
         android:textColor="@color/label_text"
-        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/precoProduto"
         app:layout_constraintStart_toEndOf="@+id/fotoProduto"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/descricaoProduto"
+        android:backgroundTint="@color/text_line"
+        android:fontFamily="@font/gill_sans"
+        android:textColorHint="@color/hint"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -48,19 +55,21 @@
         android:maxLines="4"
         android:text="@string/description"
         android:textColor="@color/text"
-        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/nomeProduto"
         app:layout_constraintTop_toBottomOf="@+id/nomeProduto" />
 
     <TextView
         android:id="@+id/precoProduto"
+        android:backgroundTint="@color/text_line"
+        android:fontFamily="@font/gill_sans"
+        android:textColorHint="@color/hint"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="@string/price"
         android:textColor="@color/price_text"
-        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
