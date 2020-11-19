@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background">#FFFFFF</color>
-    <color name="bottom_nav_bar">#005B90</color>
+    <color name="background">#262626</color>
+    <color name="bottom_nav_bar">#1B1B1B</color>
     <color name="button">#005B90</color>
-    <color name="text_background">#BCBCBC</color>
-    <color name="text">#000000</color>
-    <color name="hint">#606060</color>
+    <color name="text_background">#353535</color>
+    <color name="text">#FFFFFF</color>
+    <color name="hint">#FF9E9E9E</color>
     <color name="price_text">#0A9000</color>
     <color name="label_text">#005B90</color>
     <color name="icon">#FFFFFF</color>
-    <color name="icon_selected">#77CDFF</color>
+    <color name="icon_selected">#005B90</color>
     <color name="icon_green">#0A9000</color>
     <color name="add_button">#0A9000</color>
     <color name="remove_button">#900000</color>

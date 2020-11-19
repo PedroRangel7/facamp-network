@@ -4,12 +4,12 @@
 
     <gradient
         android:angle="270"
-        android:endColor="@color/white"
-        android:startColor="@color/blue" />
+        android:endColor="@color/image_border_gradient_secondary"
+        android:startColor="@color/image_border_gradient_primary" />
 
     <corners android:radius="0dp" />
 
     <stroke
         android:width="2dp"
-        android:color="@color/dark_blue" />
+        android:color="@color/image_border_stroke" />
 </shape>

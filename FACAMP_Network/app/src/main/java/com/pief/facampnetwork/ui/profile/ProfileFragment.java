@@ -13,13 +13,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -84,6 +87,17 @@ public class ProfileFragment extends Fragment {
         preencherPerfil(root);
         adicionarListeners();
 
+        Switch sw = (Switch)root.findViewById(R.id.switchTemaEscuro);
+        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+            }
+        });
+
         return root;
     }
 
@@ -105,13 +119,13 @@ public class ProfileFragment extends Fragment {
 
                         switch(MainActivity.getTipoSessao()){
                             case 1:
-                                tipoUsuario.setTextColor(ContextCompat.getColor(getContext(), R.color.red));
+                                tipoUsuario.setTextColor(ContextCompat.getColor(getContext(), R.color.administrator));
                                 break;
                             case 2:
-                                tipoUsuario.setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+                                tipoUsuario.setTextColor(ContextCompat.getColor(getContext(), R.color.moderator));
                                 break;
                             default:
-                                tipoUsuario.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+                                tipoUsuario.setTextColor(ContextCompat.getColor(getContext(), R.color.user));
                                 break;
                         }
                     }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_38"
+    android:background="@color/background"
     tools:context=".ui.rides.RidesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -25,8 +25,10 @@
         android:clickable="true"
         android:contentDescription="@string/add"
         android:src="@android:drawable/ic_input_add"
-        app:backgroundTint="@color/green"
+        app:backgroundTint="@color/icon_green"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="35dp"
+        app:tint="@color/icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

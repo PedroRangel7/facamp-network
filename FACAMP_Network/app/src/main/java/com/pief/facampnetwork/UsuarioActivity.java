@@ -82,13 +82,13 @@ public class UsuarioActivity extends AppCompatActivity {
 
                         switch(jsonObject.getInt("tipo")){
                             case 1:
-                                tipoUsuario.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
+                                tipoUsuario.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.administrator));
                                 break;
                             case 2:
-                                tipoUsuario.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.blue));
+                                tipoUsuario.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.moderator));
                                 break;
                             default:
-                                tipoUsuario.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
+                                tipoUsuario.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.user));
                                 break;
                         }
                     }

@@ -40,4 +40,5 @@
     <string name="create_account">Criar Conta</string>
     <string name="description_profile_picture">Foto do Perfil</string>
     <string name="upload_picture">Enviar Foto</string>
+    <string name="switch_dark_theme">Tema escuro</string>
 </resources>
