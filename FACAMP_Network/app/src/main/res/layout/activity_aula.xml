@@ -16,6 +16,7 @@
         android:background="@drawable/button_onclick_ripple"
         android:fontFamily="@font/gill_sans"
         android:text="@string/tutor_page"
+        android:textColor="@color/button_text"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
