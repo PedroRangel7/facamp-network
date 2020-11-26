@@ -16,7 +16,7 @@
     <string name="description_product_photo">Foto do produto</string>
     <string name="from_colon">Saída:</string>
     <string name="to_colon">Destino:</string>
-    <string name="date">Data</string>
+    <string name="date_and_time">Data e Horário</string>
     <string name="value_from">Valor Saída</string>
     <string name="value_to">Valor Destino</string>
     <string name="subject_colon">Matéria:</string>

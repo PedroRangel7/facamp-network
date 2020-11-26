@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:maxLines="1"
-        android:text="@string/date"
+        android:text="@string/date_and_time"
         android:textColor="@color/text"
         app:layout_constraintStart_toStartOf="@+id/materia"
         app:layout_constraintTop_toBottomOf="@+id/descricaoAula" />

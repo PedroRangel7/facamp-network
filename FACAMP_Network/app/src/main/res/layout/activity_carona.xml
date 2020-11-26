@@ -79,7 +79,7 @@
         android:inputType="textNoSuggestions|datetime"
         android:maxEms="10"
         android:maxLength="85"
-        android:text="@string/date"
+        android:text="@string/date_and_time"
         android:textColor="@color/text"
         android:textColorHint="@color/hint"
         android:textCursorDrawable="@drawable/cursor_color"
@@ -103,7 +103,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textDataCarona" />
+        app:layout_constraintTop_toBottomOf="@+id/textPlaca" />
 
     <EditText
         android:id="@+id/textPlaca"
@@ -122,7 +122,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPrecoCarona" />
+        app:layout_constraintTop_toBottomOf="@+id/textDataCarona" />
 
     <Button
         android:id="@+id/buttonPaginaMotorista"
@@ -137,7 +137,7 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPlaca" />
+        app:layout_constraintTop_toBottomOf="@+id/textPrecoCarona" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/buttonDeleteCarona"

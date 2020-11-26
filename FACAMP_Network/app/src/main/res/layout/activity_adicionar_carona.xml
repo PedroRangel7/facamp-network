@@ -62,7 +62,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDestino" />
+        app:layout_constraintTop_toBottomOf="@+id/editPlaca" />
 
     <EditText
         android:id="@+id/editPlaca"
@@ -81,7 +81,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editPrecoCarona" />
+        app:layout_constraintTop_toBottomOf="@+id/editDataCarona" />
 
     <EditText
         android:id="@+id/editDataCarona"
@@ -91,7 +91,7 @@
         android:backgroundTint="@color/text_line"
         android:ems="10"
         android:fontFamily="@font/gill_sans"
-        android:hint="@string/date"
+        android:hint="@string/date_and_time"
         android:importantForAutofill="no"
         android:inputType="textNoSuggestions|datetime"
         android:textColor="@color/text"
@@ -100,7 +100,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editPlaca" />
+        app:layout_constraintTop_toBottomOf="@+id/editDestino" />
 
     <Button
         android:id="@+id/buttonAdicionarCarona"
@@ -115,6 +115,6 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDataCarona" />
+        app:layout_constraintTop_toBottomOf="@+id/editPrecoCarona" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
