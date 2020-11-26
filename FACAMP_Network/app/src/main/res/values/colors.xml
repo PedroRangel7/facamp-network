@@ -22,7 +22,7 @@
     <color name="image_border_gradient_primary">#005B90</color>
     <color name="image_border_gradient_secondary">#FFFFFF</color>
     <color name="image_border_stroke">#005B90</color>
-    <color name="user">#FFFFFF</color>
+    <color name="user">#000000</color>
     <color name="moderator">#005B90</color>
     <color name="administrator">#900000</color>
 </resources>
