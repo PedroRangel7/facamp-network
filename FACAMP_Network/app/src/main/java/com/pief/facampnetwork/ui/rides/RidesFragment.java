@@ -2,10 +2,13 @@ package com.pief.facampnetwork.ui.rides;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,6 +33,7 @@ import com.pief.facampnetwork.R;
 import com.pief.facampnetwork.RidesRecyclerAdapter;
 import com.pief.facampnetwork.Singleton;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -72,6 +76,65 @@ public class RidesFragment extends Fragment {
             public void onClick(View view){
                 Intent telaAdicionarCarona = new Intent(getActivity(), AdicionarCaronaActivity.class);
                 startActivity(telaAdicionarCarona);
+            }
+        });
+
+        EditText buscarSaida = root.findViewById(R.id.editSearchRidesFrom);
+        EditText buscarDestino = root.findViewById(R.id.editSearchRidesTo);
+
+        buscarSaida.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String texto = editable.toString().toLowerCase();
+                ArrayList<JSONObject> caronasFiltradas = new ArrayList<>();
+                for(JSONObject carona : caronas){
+                    try {
+                        if(carona.getString("saida").toLowerCase().startsWith(texto)){
+                            if(carona.getString("destino").toLowerCase().startsWith(String.valueOf(buscarDestino.getText())))
+                                caronasFiltradas.add(carona);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                ridesRecyclerAdapter.filtrar(caronasFiltradas);
+            }
+        });
+
+        buscarDestino.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String texto = editable.toString().toLowerCase();
+                ArrayList<JSONObject> caronasFiltradas = new ArrayList<>();
+                for(JSONObject carona : caronas){
+                    try {
+                        if(carona.getString("destino").toLowerCase().startsWith(texto)){
+                            if(carona.getString("saida").toLowerCase().startsWith(String.valueOf(buscarSaida.getText())))
+                                caronasFiltradas.add(carona);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                ridesRecyclerAdapter.filtrar(caronasFiltradas);
             }
         });
 

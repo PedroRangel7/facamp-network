@@ -2,10 +2,13 @@ package com.pief.facampnetwork.ui.classes;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,6 +33,7 @@ import com.pief.facampnetwork.ClassesRecyclerAdapter;
 import com.pief.facampnetwork.R;
 import com.pief.facampnetwork.Singleton;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -72,6 +76,34 @@ public class ClassesFragment extends Fragment {
             public void onClick(View view){
                 Intent telaAdicionarAula = new Intent(getActivity(), AdicionarAulaActivity.class);
                 startActivity(telaAdicionarAula);
+            }
+        });
+
+        EditText buscar = root.findViewById(R.id.editSearchClasses);
+        buscar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String texto = editable.toString().toLowerCase();
+                ArrayList<JSONObject> aulasFiltradas = new ArrayList<>();
+                for(JSONObject aula : aulas){
+                    try {
+                        if(aula.getString("materia").toLowerCase().startsWith(texto)){
+                            aulasFiltradas.add(aula);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                classesRecyclerAdapter.filtrar(aulasFiltradas);
             }
         });
 

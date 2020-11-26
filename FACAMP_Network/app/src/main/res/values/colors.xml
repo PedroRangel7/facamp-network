@@ -4,6 +4,7 @@
     <color name="bottom_nav_bar">#005B90</color>
     <color name="button">#005B90</color>
     <color name="button_click">#77CDFF</color>
+    <color name="button_text">#FFFFFF</color>
     <color name="text_background">#FFFFFF</color>
     <color name="text">#000000</color>
     <color name="text_line">#005B90</color>

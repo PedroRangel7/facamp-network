@@ -42,4 +42,7 @@
     <string name="upload_picture">Enviar Foto</string>
     <string name="switch_dark_theme">Tema escuro</string>
     <string name="exit">Sair</string>
+    <string name="search">Buscar...</string>
+    <string name="search_from">Buscar saída...</string>
+    <string name="search_to">Buscar destino...</string>
 </resources>

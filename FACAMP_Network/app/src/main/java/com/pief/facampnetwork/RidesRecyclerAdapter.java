@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RidesRecyclerAdapter extends RecyclerView.Adapter<RidesRecyclerAdapter.ViewHolder>{
@@ -35,6 +36,11 @@ public class RidesRecyclerAdapter extends RecyclerView.Adapter<RidesRecyclerAdap
     @Override
     public int getItemCount() {
         return caronas.size();
+    }
+
+    public void filtrar(ArrayList<JSONObject> caronasFiltradas){
+        caronas = caronasFiltradas;
+        notifyDataSetChanged();
     }
 
     @Override

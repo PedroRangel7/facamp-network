@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MarketRecyclerAdapter extends RecyclerView.Adapter<MarketRecyclerAdapter.ViewHolder>{
@@ -37,6 +38,11 @@ public class MarketRecyclerAdapter extends RecyclerView.Adapter<MarketRecyclerAd
     @Override
     public int getItemCount() {
         return produtos.size();
+    }
+
+    public void filtrar(ArrayList<JSONObject> produtosFiltrados){
+        produtos = produtosFiltrados;
+        notifyDataSetChanged();
     }
 
     @Override

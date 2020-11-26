@@ -2,10 +2,13 @@ package com.pief.facampnetwork.ui.market;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,9 +32,12 @@ import com.pief.facampnetwork.AdicionarProdutoActivity;
 import com.pief.facampnetwork.R;
 import com.pief.facampnetwork.MarketRecyclerAdapter;
 import com.pief.facampnetwork.Singleton;
+import com.pief.facampnetwork.Utilities;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -72,6 +78,34 @@ public class MarketFragment extends Fragment {
             public void onClick(View view){
                 Intent telaAdicionarProduto = new Intent(getActivity(), AdicionarProdutoActivity.class);
                 startActivity(telaAdicionarProduto);
+            }
+        });
+
+        EditText buscar = root.findViewById(R.id.editSearchMarket);
+        buscar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String texto = editable.toString().toLowerCase();
+                ArrayList<JSONObject> produtosFiltrados = new ArrayList<>();
+                for(JSONObject produto : produtos){
+                    try {
+                        if(produto.getString("nome").toLowerCase().startsWith(texto)){
+                            produtosFiltrados.add(produto);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                marketRecyclerAdapter.filtrar(produtosFiltrados);
             }
         });
 
