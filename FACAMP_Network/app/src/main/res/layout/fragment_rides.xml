@@ -23,6 +23,7 @@
         android:maxLength="20"
         android:textColor="@color/text"
         android:textColorHint="@color/hint"
+        android:textCursorDrawable="@drawable/cursor_color"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,8 +31,10 @@
 
     <EditText
         android:id="@+id/editSearchRidesTo"
-        android:layout_width="379dp"
+        android:layout_width="0dp"
         android:layout_height="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="@color/text_line"
         android:ems="10"
         android:fontFamily="@font/gill_sans"
@@ -41,6 +44,7 @@
         android:maxLength="20"
         android:textColor="@color/text"
         android:textColorHint="@color/hint"
+        android:textCursorDrawable="@drawable/cursor_color"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
