@@ -47,6 +47,8 @@
         android:backgroundTint="@color/text_line"
         android:fontFamily="@font/gill_sans"
         android:inputType="textMultiLine|textNoSuggestions"
+        android:maxEms="10"
+        android:maxLength="85"
         android:text="@string/description"
         android:textColor="@color/text"
         android:textColorHint="@color/hint"
