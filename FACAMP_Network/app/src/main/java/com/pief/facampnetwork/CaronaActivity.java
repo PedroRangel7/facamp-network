@@ -41,6 +41,9 @@ public class CaronaActivity extends AppCompatActivity {
         precoCarona = findViewById(R.id.textPrecoCarona);
         placaCarona = findViewById(R.id.textPlaca);
 
+        data = Utilities.formatarDataString(data);
+        Utilities.criarDateTimePicker(dataCarona, CaronaActivity.this);
+
         saidaCarona.setText(saida);
         destinoCarona.setText(destino);
         dataCarona.setText(data);
@@ -83,7 +86,7 @@ public class CaronaActivity extends AppCompatActivity {
     private void adicionarListeners(){
         Utilities.adicionarTextChangeListener(saidaCarona, "carona", "saida", id, this);
         Utilities.adicionarTextChangeListener(destinoCarona, "carona", "destino", id, this);
-        Utilities.adicionarTextChangeListener(dataCarona, "carona", "dataCarona", id, this);
+        Utilities.adicionarDateChangeListener(dataCarona, "carona", "dataCarona", id, this);
         Utilities.adicionarTextChangeListener(precoCarona, "carona", "preco", id, this);
         Utilities.adicionarTextChangeListener(placaCarona, "carona", "placa", id, this);
     }

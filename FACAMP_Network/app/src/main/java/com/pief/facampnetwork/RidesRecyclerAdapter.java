@@ -50,7 +50,7 @@ public class RidesRecyclerAdapter extends RecyclerView.Adapter<RidesRecyclerAdap
             holder.saida.setText(carona.getString("saida"));
             holder.destino.setText(carona.getString("destino"));
             holder.preco.setText(Utilities.formatPrice(carona.getDouble("preco")));
-            holder.dataCarona.setText(carona.getString("dataCarona"));
+            holder.dataCarona.setText(Utilities.formatarDataString(carona.getString("dataCarona")));
         } catch (JSONException e) {
             e.printStackTrace();
         }

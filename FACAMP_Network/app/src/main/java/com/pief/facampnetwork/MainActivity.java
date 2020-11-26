@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static int idSessao;
     private static int tipoSessao;
+    public static String lastSelectedDateTime;
     public static int getIDSessao(){
         return idSessao;
     }

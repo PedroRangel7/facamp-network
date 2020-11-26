@@ -3,22 +3,32 @@ package com.pief.facampnetwork;
 import android.Manifest;
 import android.app.Activity;
 import android.app.Application;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
+import android.text.format.DateFormat;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -40,6 +50,8 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -113,6 +125,15 @@ public class Utilities extends Application implements ActivityCompat.OnRequestPe
         return validado;
     }
 
+    public static String formatarDataString(String data){
+        String ano = data.substring(0, 4);
+        String mes = data.substring(5, 7);
+        String dia = data.substring(8, 10);
+        String horario = data.substring(11, 16);
+        String dataFormatada = dia + "/" + mes + "/" + ano + " - " + horario;
+        return dataFormatada;
+    }
+
     public static void showConfirmacaoDelete(String tabela, int id, Activity activity){
         currentActivity = activity;
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
@@ -131,6 +152,56 @@ public class Utilities extends Application implements ActivityCompat.OnRequestPe
         });
         builder.setIcon(android.R.drawable.ic_dialog_alert);
         builder.show();
+    }
+
+    public static void criarDateTimePicker(EditText editText, Activity activity){
+        editText.setInputType(InputType.TYPE_NULL);
+        editText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDateTimePicker(editText, activity);
+            }
+        });
+    }
+
+    private static void showDateTimePicker(EditText editText, Activity activity){
+        int theme = 0;
+        int nightModeFlags = activity.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        if(nightModeFlags == Configuration.UI_MODE_NIGHT_YES){
+            theme = android.R.style.Theme_Holo_Dialog_MinWidth;
+        }
+        else{
+            theme = android.R.style.Theme_Holo_Light_Dialog_MinWidth;
+        }
+
+        final Calendar calendar =  Calendar.getInstance();
+        int finalTheme = theme;
+        DatePickerDialog datePickerDialog = new DatePickerDialog(activity, finalTheme, new DatePickerDialog.OnDateSetListener(){
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+                calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.MONTH, month);
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(activity, finalTheme, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
+                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        calendar.set(Calendar.MINUTE, minute);
+
+                        SimpleDateFormat sqlDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
+
+                        MainActivity.lastSelectedDateTime = sqlDateFormat.format(calendar.getTime());
+                        editText.setText(simpleDateFormat.format(calendar.getTime()));
+                    }
+                }, 12, 0, true);
+                timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                timePickerDialog.show();
+            }
+        }, 2020, 10, 27);
+        datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        datePickerDialog.show();
     }
 
     public static void criarDeleteStringRequest(String tabela, int id){
@@ -178,6 +249,25 @@ public class Utilities extends Application implements ActivityCompat.OnRequestPe
             @Override
             public void afterTextChanged(Editable editable) {
                 criarEditStringRequest(tabela, campo, editText.getText().toString(), id);
+            }
+        });
+    }
+
+    public static void adicionarDateChangeListener(EditText editText, String tabela, String campo, int id, Activity activity){
+        currentActivity = activity;
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                criarEditStringRequest(tabela, campo, MainActivity.lastSelectedDateTime, id);
             }
         });
     }

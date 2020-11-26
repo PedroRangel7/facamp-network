@@ -46,6 +46,8 @@ public class AdicionarCaronaActivity extends AppCompatActivity {
         editPlaca = findViewById(R.id.editPlaca);
         editData = findViewById(R.id.editDataCarona);
 
+        Utilities.criarDateTimePicker(editData, AdicionarCaronaActivity.this);
+
         buttonAdicionar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -90,7 +92,7 @@ public class AdicionarCaronaActivity extends AppCompatActivity {
                 params.put("destino", editDestino.getText().toString());
                 params.put("preco", editPreco.getText().toString());
                 params.put("placa", editPlaca.getText().toString());
-                params.put("dataCarona", editData.getText().toString());
+                params.put("dataCarona", MainActivity.lastSelectedDateTime);
                 params.put("idUsuario", String.valueOf(MainActivity.getIDSessao()));
                 return params;
             }

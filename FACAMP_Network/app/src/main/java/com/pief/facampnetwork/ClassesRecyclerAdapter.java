@@ -50,7 +50,7 @@ public class ClassesRecyclerAdapter extends RecyclerView.Adapter<ClassesRecycler
             holder.materia.setText(aula.getString("materia"));
             holder.descricao.setText(aula.getString("descricao"));
             holder.preco.setText(Utilities.formatPrice(aula.getDouble("preco")));
-            holder.dataAula.setText(aula.getString("dataAula"));
+            holder.dataAula.setText(Utilities.formatarDataString(aula.getString("dataAula")));
         } catch (JSONException e) {
             e.printStackTrace();
         }

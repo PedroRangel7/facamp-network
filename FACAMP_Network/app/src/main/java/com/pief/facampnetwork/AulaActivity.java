@@ -39,6 +39,9 @@ public class AulaActivity extends AppCompatActivity {
         dataAula = findViewById(R.id.textDataAula);
         precoAula = findViewById(R.id.textPrecoAula);
 
+        data = Utilities.formatarDataString(data);
+        Utilities.criarDateTimePicker(dataAula, AulaActivity.this);
+
         materiaAula.setText(materia);
         descricaoAula.setText(descricao);
         dataAula.setText(data);
@@ -80,7 +83,7 @@ public class AulaActivity extends AppCompatActivity {
     private void adicionarListeners(){
         Utilities.adicionarTextChangeListener(materiaAula, "aula", "materia", id, this);
         Utilities.adicionarTextChangeListener(descricaoAula, "aula", "descricao", id, this);
-        Utilities.adicionarTextChangeListener(dataAula, "aula", "dataAula", id, this);
+        Utilities.adicionarDateChangeListener(dataAula, "aula", "dataAula", id, this);
         Utilities.adicionarTextChangeListener(precoAula, "aula", "preco", id, this);
     }
 }
