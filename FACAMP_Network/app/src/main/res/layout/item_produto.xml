@@ -43,18 +43,18 @@
 
     <TextView
         android:id="@+id/descricaoProduto"
-        android:backgroundTint="@color/text_line"
-        android:fontFamily="@font/gill_sans"
-        android:textColorHint="@color/hint"
-        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="2dp"
-        android:maxEms="15"
-        android:maxLines="4"
+        android:backgroundTint="@color/text_line"
+        android:fontFamily="@font/gill_sans"
+        android:maxEms="10"
+        android:maxLines="3"
         android:text="@string/description"
         android:textColor="@color/text"
+        android:textColorHint="@color/hint"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/nomeProduto"
         app:layout_constraintTop_toBottomOf="@+id/nomeProduto" />
 
