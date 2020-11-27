@@ -110,7 +110,7 @@ public class RidesFragment extends Fragment {
                 for(JSONObject carona : caronas){
                     try {
                         if(carona.getString("saida").toLowerCase().startsWith(texto)){
-                            if(carona.getString("destino").toLowerCase().startsWith(String.valueOf(buscarDestino.getText())))
+                            if(carona.getString("destino").toLowerCase().startsWith(buscarDestino.getText().toString().toLowerCase()))
                                 caronasFiltradas.add(carona);
                         }
                     } catch (JSONException e) {
@@ -138,7 +138,7 @@ public class RidesFragment extends Fragment {
                 for(JSONObject carona : caronas){
                     try {
                         if(carona.getString("destino").toLowerCase().startsWith(texto)){
-                            if(carona.getString("saida").toLowerCase().startsWith(String.valueOf(buscarSaida.getText())))
+                            if(carona.getString("saida").toLowerCase().startsWith(buscarSaida.getText().toString().toLowerCase()))
                                 caronasFiltradas.add(carona);
                         }
                     } catch (JSONException e) {
