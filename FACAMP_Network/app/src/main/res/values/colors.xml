@@ -14,6 +14,7 @@
     <color name="icon">#FFFFFF</color>
     <color name="icon_selected">#77CDFF</color>
     <color name="icon_green">#0A9000</color>
+    <color name="icon_blue">#005B90</color>
     <color name="add_button">#0A9000</color>
     <color name="remove_button">#900000</color>
     <color name="switch_thumb">#FFFFFF</color>

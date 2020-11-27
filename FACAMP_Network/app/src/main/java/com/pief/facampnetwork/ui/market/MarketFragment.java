@@ -32,12 +32,10 @@ import com.pief.facampnetwork.AdicionarProdutoActivity;
 import com.pief.facampnetwork.R;
 import com.pief.facampnetwork.MarketRecyclerAdapter;
 import com.pief.facampnetwork.Singleton;
-import com.pief.facampnetwork.Utilities;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,7 +51,7 @@ public class MarketFragment extends Fragment {
     MarketRecyclerAdapter marketRecyclerAdapter;
     List<JSONObject> produtos;
 
-    FloatingActionButton buttonAdicionarProduto;
+    FloatingActionButton buttonAdicionarProduto, buttonAtualizarProdutos;
 
     private MarketViewModel marketViewModel;
 
@@ -72,12 +70,20 @@ public class MarketFragment extends Fragment {
         preencherProdutos(root);
 
         buttonAdicionarProduto = root.findViewById(R.id.market_add_button);
+        buttonAtualizarProdutos = root.findViewById(R.id.buttonRefreshMarket);
 
         buttonAdicionarProduto.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent telaAdicionarProduto = new Intent(getActivity(), AdicionarProdutoActivity.class);
                 startActivity(telaAdicionarProduto);
+            }
+        });
+
+        buttonAtualizarProdutos.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                preencherProdutos(root);
             }
         });
 

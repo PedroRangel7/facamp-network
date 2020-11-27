@@ -45,4 +45,5 @@
     <string name="search">Buscar...</string>
     <string name="search_from">Buscar saída...</string>
     <string name="search_to">Buscar destino...</string>
+    <string name="refresh">Atualizar</string>
 </resources>

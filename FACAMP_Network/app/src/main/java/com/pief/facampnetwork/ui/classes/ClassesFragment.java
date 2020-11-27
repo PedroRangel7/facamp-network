@@ -51,7 +51,7 @@ public class ClassesFragment extends Fragment {
     ClassesRecyclerAdapter classesRecyclerAdapter;
     List<JSONObject> aulas;
 
-    FloatingActionButton buttonAdicionarAula;
+    FloatingActionButton buttonAdicionarAula, buttonAtualizarAulas;
 
     private ClassesViewModel classesViewModel;
 
@@ -70,12 +70,20 @@ public class ClassesFragment extends Fragment {
         preencherAulas(root);
 
         buttonAdicionarAula = root.findViewById(R.id.classes_add_button);
+        buttonAtualizarAulas = root.findViewById(R.id.buttonRefreshClasses);
 
         buttonAdicionarAula.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent telaAdicionarAula = new Intent(getActivity(), AdicionarAulaActivity.class);
                 startActivity(telaAdicionarAula);
+            }
+        });
+
+        buttonAtualizarAulas.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                preencherAulas(root);
             }
         });
 

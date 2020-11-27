@@ -51,7 +51,7 @@ public class RidesFragment extends Fragment {
     RidesRecyclerAdapter ridesRecyclerAdapter;
     List<JSONObject> caronas;
 
-    FloatingActionButton buttonAdicionarCarona;
+    FloatingActionButton buttonAdicionarCarona, buttonAtualizarCaronas;
 
     private RidesViewModel ridesViewModel;
 
@@ -70,6 +70,14 @@ public class RidesFragment extends Fragment {
         preencherCaronas(root);
 
         buttonAdicionarCarona = root.findViewById(R.id.rides_add_button);
+        buttonAtualizarCaronas = root.findViewById(R.id.buttonRefreshRides);
+
+        buttonAtualizarCaronas.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                preencherCaronas(root);
+            }
+        });
 
         buttonAdicionarCarona.setOnClickListener(new View.OnClickListener(){
             @Override
