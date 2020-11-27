@@ -43,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
     StringRequest stringRequest;
     RequestQueue requestQueue;
 
-    Button buttonRegistrar;
+    Button buttonRegistrar, buttonTemConta;
     ImageView foto;
     EditText editLogin, editNome, editSenha, editTelefone, editBiografia;
 
@@ -55,6 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
         requestQueue = Singleton.getInstance(this.getApplicationContext()).getRequestQueue();
 
         buttonRegistrar = findViewById(R.id.buttonRegistrar);
+        buttonTemConta = findViewById(R.id.buttonTemConta);
         foto = findViewById(R.id.imageViewFoto);
         editNome = findViewById(R.id.editNomeRegister);
         editLogin = findViewById(R.id.editLoginRegister);
@@ -73,6 +74,15 @@ public class RegisterActivity extends AppCompatActivity {
                     buttonRegistrar.setEnabled(false);
                     registrarUsuario();
                 }
+            }
+        });
+
+        buttonTemConta.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent telaLogin = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(telaLogin);
+                finish();
             }
         });
 

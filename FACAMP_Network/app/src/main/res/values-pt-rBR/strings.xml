@@ -54,4 +54,5 @@
     <string name="add_ride">Adicionar Carona</string>
     <string name="add_class">Adicionar Aula</string>
     <string name="add_product">Adicionar Produto</string>
+    <string name="i_already_have_an_account">Já Tenho Uma Conta</string>
 </resources>
