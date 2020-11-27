@@ -37,6 +37,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -136,6 +137,8 @@ public class MarketFragment extends Fragment {
                             JSONObject produto = jsonObject.getJSONObject(String.valueOf(i));
                             produtos.add(produto);
                         }
+
+                        Collections.reverse(produtos);
 
                         marketRecyclerAdapter = new MarketRecyclerAdapter(produtos);
                         recyclerView.setAdapter(marketRecyclerAdapter);

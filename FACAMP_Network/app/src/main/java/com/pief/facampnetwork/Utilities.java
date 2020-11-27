@@ -51,8 +51,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Time;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -113,7 +115,7 @@ public class Utilities extends Application implements ActivityCompat.OnRequestPe
         }
     }
 
-    public static boolean checarCamposAleatorios(EditText[] editTexts){
+    public static boolean checarCamposObrigatorios(EditText[] editTexts){
         boolean validado = true;
         for(EditText editText : editTexts){
             if(editText.getText().length() == 0){
@@ -121,6 +123,24 @@ public class Utilities extends Application implements ActivityCompat.OnRequestPe
                 editText.requestFocus();
                 validado = false;
             }
+        }
+        return validado;
+    }
+
+    public static boolean checarData(EditText editText){
+        boolean validado = true;
+        Date now = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date date = new Date();
+        try {
+            date = format.parse(MainActivity.lastSelectedDateTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if(date.compareTo(now) <= 0){
+            editText.setError("A data deve ser futura.");
+            editText.requestFocus();
+            validado = false;
         }
         return validado;
     }
@@ -267,7 +287,10 @@ public class Utilities extends Application implements ActivityCompat.OnRequestPe
 
             @Override
             public void afterTextChanged(Editable editable) {
-                criarEditStringRequest(tabela, campo, MainActivity.lastSelectedDateTime, id);
+                boolean validado = checarData(editText);
+                if(validado){
+                    criarEditStringRequest(tabela, campo, MainActivity.lastSelectedDateTime, id);
+                }
             }
         });
     }

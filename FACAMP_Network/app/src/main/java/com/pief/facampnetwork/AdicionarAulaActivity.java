@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +15,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
@@ -53,10 +51,13 @@ public class AdicionarAulaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 EditText[] camposObrigatorios = {editData, editPreco, editMateria};
-                boolean validado = Utilities.checarCamposAleatorios(camposObrigatorios);
+                boolean validado = Utilities.checarCamposObrigatorios(camposObrigatorios);
                 if(validado){
-                    buttonAdicionar.setEnabled(false);
-                    adicionarAula();
+                    validado = Utilities.checarData(editData);
+                    if(validado){
+                        buttonAdicionar.setEnabled(false);
+                        adicionarAula();
+                    }
                 }
             }
         });

@@ -66,7 +66,7 @@ public class AdicionarProdutoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 EditText[] camposObrigatorios = {editPreco, editNome};
-                boolean validado = Utilities.checarCamposAleatorios(camposObrigatorios);
+                boolean validado = Utilities.checarCamposObrigatorios(camposObrigatorios);
                 if(validado){
                     buttonAdicionar.setEnabled(false);
                     adicionarProduto();

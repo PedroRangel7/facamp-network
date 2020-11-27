@@ -32,11 +32,14 @@ import com.pief.facampnetwork.AdicionarCaronaActivity;
 import com.pief.facampnetwork.R;
 import com.pief.facampnetwork.RidesRecyclerAdapter;
 import com.pief.facampnetwork.Singleton;
+import com.pief.facampnetwork.Utilities;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -162,10 +165,30 @@ public class RidesFragment extends Fragment {
                         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
                         caronas = new ArrayList<>();
+                        Date now = new Date();
 
                         for (int i = 0; i < jsonObject.getInt("numeroCaronas"); i++){
                             JSONObject carona = jsonObject.getJSONObject(String.valueOf(i));
-                            caronas.add(carona);
+                            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                            Date date = format.parse(carona.getString("dataCarona"));
+                            if(date.compareTo(now) <= 0){
+                                Utilities.criarDeleteStringRequest("carona", carona.getInt("id"));
+                                continue;
+                            }
+                            boolean added = false;
+                            if(i != 0){
+                                for(int j = 0; j < caronas.size(); j++){
+                                    Date currentDate = format.parse(caronas.get(j).getString("dataCarona"));
+                                    if(date.compareTo(currentDate) <= 0){
+                                        caronas.add(j, carona);
+                                        added = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if(!added){
+                                caronas.add(carona);
+                            }
                         }
 
                         ridesRecyclerAdapter = new RidesRecyclerAdapter(caronas);

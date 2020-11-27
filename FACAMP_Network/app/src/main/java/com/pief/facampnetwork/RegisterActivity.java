@@ -24,7 +24,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
@@ -69,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 EditText[] camposObrigatorios = {editSenha, editLogin, editNome};
-                boolean validado = Utilities.checarCamposAleatorios(camposObrigatorios);
+                boolean validado = Utilities.checarCamposObrigatorios(camposObrigatorios);
                 if(validado){
                     buttonRegistrar.setEnabled(false);
                     registrarUsuario();

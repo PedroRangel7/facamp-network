@@ -32,11 +32,15 @@ import com.pief.facampnetwork.AdicionarAulaActivity;
 import com.pief.facampnetwork.ClassesRecyclerAdapter;
 import com.pief.facampnetwork.R;
 import com.pief.facampnetwork.Singleton;
+import com.pief.facampnetwork.Utilities;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -131,10 +135,30 @@ public class ClassesFragment extends Fragment {
                         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
                         aulas = new ArrayList<>();
+                        Date now = new Date();
 
                         for (int i = 0; i < jsonObject.getInt("numeroAulas"); i++){
                             JSONObject aula = jsonObject.getJSONObject(String.valueOf(i));
-                            aulas.add(aula);
+                            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                            Date date = format.parse(aula.getString("dataAula"));
+                            if(date.compareTo(now) <= 0){
+                                Utilities.criarDeleteStringRequest("aula", aula.getInt("id"));
+                                continue;
+                            }
+                            boolean added = false;
+                            if(i != 0){
+                                for(int j = 0; j < aulas.size(); j++){
+                                    Date currentDate = format.parse(aulas.get(j).getString("dataAula"));
+                                    if(date.compareTo(currentDate) <= 0){
+                                        aulas.add(j, aula);
+                                        added = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if(!added){
+                                aulas.add(aula);
+                            }
                         }
 
                         classesRecyclerAdapter = new ClassesRecyclerAdapter(aulas);
