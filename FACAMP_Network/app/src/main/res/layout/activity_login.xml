@@ -90,4 +90,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonEntrar" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/buttonLoginPasswordVisibility"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00FFFFFF"
+        android:clickable="true"
+        app:elevation="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editSenha"
+        app:layout_constraintStart_toEndOf="@+id/editSenha"
+        app:layout_constraintTop_toTopOf="@+id/editSenha"
+        app:maxImageSize="30sp"
+        app:srcCompat="@android:drawable/ic_menu_view"
+        app:tint="@color/icon_blue" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

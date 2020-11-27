@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONObject;
 
@@ -44,8 +46,11 @@ public class RegisterActivity extends AppCompatActivity {
     RequestQueue requestQueue;
 
     Button buttonRegistrar, buttonTemConta;
+    FloatingActionButton buttonPasswordVisibility;
     ImageView foto;
     EditText editLogin, editNome, editSenha, editTelefone, editBiografia;
+
+    boolean passwordVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +61,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         buttonRegistrar = findViewById(R.id.buttonRegistrar);
         buttonTemConta = findViewById(R.id.buttonTemConta);
+        buttonPasswordVisibility = findViewById(R.id.buttonRegisterPasswordVisibility);
         foto = findViewById(R.id.imageViewFoto);
         editNome = findViewById(R.id.editNomeRegister);
         editLogin = findViewById(R.id.editLoginRegister);
@@ -83,6 +89,19 @@ public class RegisterActivity extends AppCompatActivity {
                 Intent telaLogin = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(telaLogin);
                 finish();
+            }
+        });
+
+        buttonPasswordVisibility.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                if(!passwordVisible){
+                    editSenha.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                }
+                else{
+                    editSenha.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                }
+                passwordVisible = !passwordVisible;
             }
         });
 
