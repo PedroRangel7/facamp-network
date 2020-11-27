@@ -1,8 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">FACAMP Network</string>
     <string name="title_market">Market</string>
     <string name="title_rides">Rides</string>
     <string name="title_classes">Classes</string>
+    <string name="title_profile">Profile</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="name">Name</string>
@@ -52,5 +54,4 @@
     <string name="add_ride">Add Ride</string>
     <string name="add_class">Add Class</string>
     <string name="add_product">Add Product</string>
-    <string name="title_profile">Profile</string>
 </resources>

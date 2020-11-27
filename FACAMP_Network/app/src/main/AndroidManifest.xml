@@ -32,7 +32,7 @@
             android:label="@string/add_product"></activity>
         <activity
             android:name=".LoginActivity"
-            android:label="@string/enter">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
