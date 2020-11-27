@@ -46,4 +46,11 @@
     <string name="search_from">Buscar saída...</string>
     <string name="search_to">Buscar destino...</string>
     <string name="refresh">Atualizar</string>
+    <string name="label_product">Produto</string>
+    <string name="label_ride">Carona</string>
+    <string name="label_class">Aula</string>
+    <string name="user">Usuário</string>
+    <string name="add_ride">Adicionar Carona</string>
+    <string name="add_class">Adicionar Aula</string>
+    <string name="add_product">Adicionar Produto</string>
 </resources>
